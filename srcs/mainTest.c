@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 04:59:07 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/11 05:12:02 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/11 05:10:56 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		main(int argc, char *argv[])
 	mlx_win = mlx_new_window(mlx_ptr,1000,1000,"Fdf");
 	if (mlx_win == NULL)
 		perror("Error opening new window\n");
+/*
 	y = 250;
 	while (y < 750)
 	{
@@ -48,9 +49,10 @@ int		main(int argc, char *argv[])
 		}
 		y++;
 	}
+*/
 	mlx_key_hook(mlx_win, key_hook_exit, param);
 
 	// Nothing before this point
-	mlx_loop(mlx_ptr);
+	mlx_loop(mlx_win);
 	return (0);
 }
