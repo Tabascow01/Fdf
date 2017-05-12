@@ -6,7 +6,6 @@ t_read	*ft_init_lst_rd(void)
 
 	list = (t_read *)malloc(sizeof(list));
 	list->next = NULL;
-	list->line = NULL;
 	list->fd = 0;
 	return(list);
 }

@@ -14,7 +14,7 @@ NAME = fdf
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c
+SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c window.c event.c
 
 SRCS_PATH = srcs/
 

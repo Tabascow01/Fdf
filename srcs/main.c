@@ -14,7 +14,6 @@
 
 int		main(int argc, char *argv[])
 {
-	int		err;
 	t_map	*lst;
 	t_read	*lst_rd;
 
@@ -22,9 +21,11 @@ int		main(int argc, char *argv[])
 		return (0);
 	lst_rd = NULL;
 	lst = ft_init_lst();
-	err = ft_parser(lst_rd, lst, argv);
-
-	ft_clear_lst(lst);
+	lst->error = ft_parser(lst_rd, lst, argv);
+	if (lst->error != 0)
+		ft_putstr_fd("Error[1] parser\n", 2);
 //	sleep(30);
+//	ft_window(lst);
+	ft_clear_lst(lst);
 	return (0);
 }

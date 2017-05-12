@@ -38,7 +38,6 @@ typedef struct		s_read
 {
 	struct s_read	*next;
 
-	char			*line;
 	int				fd;
 
 }					t_read;
@@ -51,6 +50,10 @@ typedef struct		s_math
 	int				*y;
 }					t_math;
 */
+
+void	ft_event(t_map *lst);
+void	ft_window(t_map *lst);
+
 void	ft_clear_lst(t_map *lst);
 void	ft_clear_lst_rd(t_read *lst_rd);
 
