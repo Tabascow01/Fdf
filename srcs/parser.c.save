@@ -2,10 +2,10 @@
 
 static	void	ft_store_map(t_read *lst_rd, t_map *lst)
 {
-//	int		ret;
+	int		ret;
+	char	*tmp;
 
-	lst->map_str = ft_get_file(lst_rd->fd);
-/*
+	tmp = NULL;
 	ret = 1;
 	while (ret > 0)
 	{
@@ -15,7 +15,6 @@ static	void	ft_store_map(t_read *lst_rd, t_map *lst)
 		ft_strdel(&tmp);
 		ft_strdel(&lst_rd->line);
 	}
-*/
 }
 
 static	void	ft_open_file(t_read	*lst_rd, char **argv)

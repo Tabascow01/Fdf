@@ -59,4 +59,6 @@ t_read	*ft_init_lst_rd();
 
 int		ft_parser(t_read *lst_rd, t_map *lst, char **argv);
 
+char	*ft_get_file(int fd);
+
 #endif
