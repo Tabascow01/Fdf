@@ -6,10 +6,7 @@ int		ft_key_hook_exit(int keycode, void *param)
 
 	lst = param;
 	if (keycode == 53)
-	{
-		ft_clear_lst(lst);
 		exit(1);
-	}
 	return (0);
 }
 

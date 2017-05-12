@@ -24,8 +24,7 @@ int		main(int argc, char *argv[])
 	lst->error = ft_parser(lst_rd, lst, argv);
 	if (lst->error != 0)
 		ft_putstr_fd("Error[1] parser\n", 2);
-//	sleep(30);
-//	ft_window(lst);
+	ft_window(lst);
 	ft_clear_lst(lst);
 	return (0);
 }
