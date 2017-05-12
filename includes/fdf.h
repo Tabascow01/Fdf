@@ -42,7 +42,7 @@ typedef struct		s_read
 	int				fd;
 
 }					t_read;
-
+/*
 typedef struct		s_math
 {
 	struct s_math	*next;
@@ -50,7 +50,7 @@ typedef struct		s_math
 	int				*x;
 	int				*y;
 }					t_math;
-
+*/
 void	ft_clear_lst(t_map *lst);
 void	ft_clear_lst_rd(t_read *lst_rd);
 
