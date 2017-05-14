@@ -16,6 +16,6 @@ int				ft_parser(t_read *lst_rd, t_map *lst, char **argv)
 	ft_open_file(lst_rd, argv);
 	ft_store_map(lst_rd, lst);
 //	ft_printf("Map:\n[\n%s]\n",lst->map_str);
-	ft_clear_lst_rd(lst_rd);
+//	ft_clear_lst_rd(lst_rd);
 	return (0);
 }

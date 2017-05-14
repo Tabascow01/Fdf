@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 04:59:07 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/14 02:43:04 by mchemakh         ###   ########.fr       */
+/*   Created: 2017/05/14 02:29:47 by mchemakh          #+#    #+#             */
+/*   Updated: 2017/05/14 02:39:55 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int argc, char *argv[])
+void	ft_error_win_ptr(t_map *lst)
 {
-	t_map	*lst;
-	t_read	*lst_rd;
+	lst->error = 2;
+	ft_putstr_fd("Error [", 2);
+	ft_putnbr_fd(lst->error, 2);
+	ft_putstr_fd("] window opening\n", 2);
+	exit(-1);
+}
 
-	if (argc != 2)
-		return (0);
-	lst_rd = NULL;
-	lst = ft_init_lst();
-	lst->error = ft_parser(lst_rd, lst, argv);
-	if (lst->error != 0)
-		ft_putstr_fd("Error[1] parser\n", 2);
-//	ft_printf("map:\n[\n%s]\n",lst->map_str);
-//	ft_window(lst);
-	mlx_loop(lst->mlx_ptr);
-	return (0);
+void	ft_error_mlx_ptr(t_map *lst)
+{
+	lst->error = 1;
+	ft_putstr_fd("Error [", 2);
+	ft_putnbr_fd(lst->error, 2);
+	ft_putstr_fd("] mlx initialisation\n", 2);
+	exit(-1);
 }

@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/11 00:31:29 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/14 02:38:13 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct		s_map
 	int				error;
 
 	void			*mlx_ptr;
-	void			*mlx_win;
+	void			*win_ptr;
 
 }					t_map;
 
@@ -56,6 +56,9 @@ void	ft_window(t_map *lst);
 
 void	ft_clear_lst(t_map *lst);
 void	ft_clear_lst_rd(t_read *lst_rd);
+
+void	ft_error_mlx_ptr(t_map *lst);
+void	ft_error_win_ptr(t_map *lst);
 
 t_map	*ft_init_lst();
 t_read	*ft_init_lst_rd();
