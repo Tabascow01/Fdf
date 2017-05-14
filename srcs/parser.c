@@ -1,21 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/14 03:44:54 by mchemakh          #+#    #+#             */
+/*   Updated: 2017/05/14 03:44:55 by mchemakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static	void	ft_store_map(t_read *lst_rd, t_map *lst)
+static	void	ft_store_map(t_parse *parser, t_env *env)
 {
-	lst->map_str = ft_get_file(lst_rd->fd);
+	env->parser = ft_get_file(parser->fd);
 }
 
-static	void	ft_open_file(t_read	*lst_rd, char **argv)
+static	void	ft_open_file(t_parse *parser, char **argv)
 {
-	lst_rd->fd = open(argv[1],O_RDONLY);
+	parser->fd = open(argv[1],O_RDONLY);
 }
 
-int				ft_parser(t_read *lst_rd, t_map *lst, char **argv)
+int				ft_parser(t_parse *parser, t_env *lst, char **argv)
 {
-	lst_rd = ft_init_lst_rd();
-	ft_open_file(lst_rd, argv);
-	ft_store_map(lst_rd, lst);
-//	ft_printf("Map:\n[\n%s]\n",lst->map_str);
-//	ft_clear_lst_rd(lst_rd);
+	parser = ft_init_parser();
+	ft_open_file(parser, argv);
+	ft_store_map(parser, lst);
+	ft_clear_parser(parser);
 	return (0);
 }

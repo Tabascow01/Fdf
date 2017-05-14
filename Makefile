@@ -6,7 +6,7 @@
 #    By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/10 04:47:56 by mchemakh          #+#    #+#              #
-#    Updated: 2017/05/14 02:29:41 by mchemakh         ###   ########.fr        #
+#    Updated: 2017/05/14 02:57:56 by mchemakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-#	@make -C $(LIB)
+	@make -C $(LIB)
+	@make -C $(LIB_MLX)
 	@$(CC) $(CFLAGS) $(INC_PATH) $(OBJ) -g -o $(NAME) $(LIB_PATH) $(LIB_NAME) $(LIB_MLX_PATH) $(LIB_MLX_NAME)
 
 
@@ -47,10 +48,11 @@ $(OBJ_PATH)%.o: $(SRCS_PATH)%.c
 
 clean:
 	@rm -rf $(OBJ_PATH)
-#	@make clean -C $(LIB)
+	@make clean -C $(LIB)
 
 fclean: clean
 	@rm -rf $(NAME)
+	@make clean -C $(LIB_MLX)
 	@make fclean -C $(LIB)
 
 re: fclean all

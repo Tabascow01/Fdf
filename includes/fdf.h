@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/14 02:38:13 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/14 03:53:27 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,52 +18,53 @@
 # include "../ressources/minilibx_macos_sierra_20161017/mlx.h"
 # include <stdio.h>
 
-typedef struct		s_map
+typedef struct		s_env
 {
-	struct s_map	*next;
-	struct s_map	*first;
-	struct s_map	*prev;
+	char			*parser;
 
-	char			*map_str;
-
-	int				*map_int;
 	int				error;
 
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void			*mlx;
+	void			*win;
 
-}					t_map;
+	int				height;
+	int				width;
+	char			*title;
+}					t_env;
 
-typedef struct		s_read
+typedef struct		s_parse
 {
-	struct s_read	*next;
+	struct s_parse	*next;
 
 	int				fd;
 
-}					t_read;
-/*
-typedef struct		s_math
+}					t_parse;
+
+typedef struct		s_calc
 {
-	struct s_math	*next;
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+	int dx;
+	int dy;
+}					t_calc;
 
-	int				*x;
-	int				*y;
-}					t_math;
-*/
+int		ft_display(t_env *env);
+int		ft_event(t_env *env);
+int		ft_window(t_env *env);
 
-void	ft_event(t_map *lst);
-void	ft_window(t_map *lst);
+void	ft_clear_env(t_env *env);
+void	ft_clear_parser(t_parse *parser);
 
-void	ft_clear_lst(t_map *lst);
-void	ft_clear_lst_rd(t_read *lst_rd);
+void	ft_error_mlx_ptr(t_env *env);
+void	ft_error_win_ptr(t_env *env);
 
-void	ft_error_mlx_ptr(t_map *lst);
-void	ft_error_win_ptr(t_map *lst);
+t_calc	ft_init_calcul();
+t_env	ft_init_env();
+t_parse	*ft_init_parser();
 
-t_map	*ft_init_lst();
-t_read	*ft_init_lst_rd();
-
-int		ft_parser(t_read *lst_rd, t_map *lst, char **argv);
+int		ft_parser(t_parse *parser, t_env *env, char **argv);
 
 char	*ft_get_file(int fd);
 

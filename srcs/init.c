@@ -1,31 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
+/*   Updated: 2017/05/14 03:55:02 by mchemakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-t_read	*ft_init_lst_rd(void)
+t_calc	ft_init_calcul(void)
 {
-	t_read	*list;
+	t_calc calc;
 
-	list = (t_read *)malloc(sizeof(list));
-	list->next = NULL;
-	list->fd = 0;
-	return(list);
+	calc.x0 = 250;
+	calc.y0 = 250;
+	calc.x1 = 750;
+	calc.y1 = 750;
+	calc.dx = calc.x1 - calc.x0;
+	calc.dy = calc.y1 - calc.y0;
+	return (calc);
 }
 
-t_map	*ft_init_lst(void)
+t_parse	*ft_init_parser(void)
 {
-	t_map	*list;
+	t_parse	*parser;
 
-	list = (t_map *)malloc(sizeof(list));
-	list->next = NULL;
-	list->prev = NULL;
-	list->first = list;
-	list->map_str = NULL;
-	list->map_int = NULL;
-	list->error = 0;
-	list->mlx_ptr = mlx_init();
-	if (list->mlx_ptr == NULL)
-		ft_error_mlx_ptr(list);
-	list->win_ptr = mlx_new_window(list->mlx_ptr, 1000, 1000, "Fdf");
-	if (list->win_ptr == NULL)
-		ft_error_win_ptr(list);
-	return (list);
+	parser = (t_parse *)malloc(sizeof(parser));
+	parser->next = NULL;
+	parser->fd = 0;
+	return(parser);
+}
+
+t_env	ft_init_env(void)
+{
+	t_env	env;
+
+	env.parser = NULL;
+	env.error = 0;
+	env.height = 720;
+	env.width = 1280;
+	env.title = "Fdf";
+	env.mlx = mlx_init();
+	if (env.mlx == NULL)
+		ft_error_mlx_ptr(&env);
+	env.win = mlx_new_window(env.mlx, env.width, env.height, env.title);
+	if (env.win == NULL)
+		ft_error_win_ptr(&env);
+	return (env);
 }
