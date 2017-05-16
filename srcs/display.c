@@ -17,6 +17,6 @@ int		ft_display(t_env *env)
 	t_calc	calc;
 
 	calc = ft_init_calcul();
-	ft_printf("parser:\n%s\n", env->parser);
+	ft_printf("env.error [%d]\n", env->error);
 	return (0);
 }
