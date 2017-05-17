@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/14 03:55:02 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/17 23:59:13 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,19 @@ t_calc	ft_init_calcul(void)
 {
 	t_calc calc;
 
+	calc.x = 200;
+	calc.y = 700;
 	calc.x0 = 250;
 	calc.y0 = 250;
 	calc.x1 = 750;
 	calc.y1 = 750;
 	calc.dx = calc.x1 - calc.x0;
 	calc.dy = calc.y1 - calc.y0;
+	calc.e = 0;
+	calc.incrE = 0;
+	calc.incrNE = 0;
+	calc.incX = 0;
+	calc.incY = 0;
 	return (calc);
 }
 

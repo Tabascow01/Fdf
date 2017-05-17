@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/14 03:53:27 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/17 23:54:32 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,19 @@ typedef struct		s_parse
 
 typedef struct		s_calc
 {
+	int x;
+	int y;
 	int x0;
 	int y0;
 	int x1;
 	int y1;
 	int dx;
 	int dy;
+	int incrE;
+	int	incrNE;
+	int	e;
+	int	incX;
+	int	incY;
 }					t_calc;
 
 int		ft_display(t_env *env);
