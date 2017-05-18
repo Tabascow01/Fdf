@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/17 23:54:32 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/18 05:00:14 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,27 @@ typedef struct		s_calc
 	int y1;
 	int dx;
 	int dy;
-	int incrE;
-	int	incrNE;
-	int	e;
-	int	incX;
-	int	incY;
+	int deltaE;
+	int	deltaNE;
+	int	dp;
+//	int e;
+//	int	incX;
+//	int	incY;
 }					t_calc;
+
+typedef struct		s_stock
+{
+	int x;
+	int x0;
+	int x1;
+	int y;
+	int y0;
+	int y1;
+	int z0;
+	int z1;
+	int z2;
+	int z3;
+}					t_stock;
 
 int		ft_display(t_env *env);
 int		ft_event(t_env *env);
@@ -67,6 +82,7 @@ void	ft_clear_parser(t_parse *parser);
 void	ft_error_mlx_ptr(t_env *env);
 void	ft_error_win_ptr(t_env *env);
 
+t_stock	ft_init_stock(int x0, int x1, int y0, int y1);
 t_calc	ft_init_calcul();
 t_env	ft_init_env();
 t_parse	*ft_init_parser();

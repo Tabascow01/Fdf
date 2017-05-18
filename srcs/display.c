@@ -6,64 +6,71 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:23 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/17 23:55:26 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/18 05:57:27 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		ft_display(t_env *env)
+static int		ft_segment(t_env *env, t_calc calc)
 {
-	t_calc	calc;
-	
-	calc = ft_init_calcul();
-	calc.incrE = 2 * calc.dy;
-	calc.incrNE = 2 * (calc.dy - calc.dx);
-	calc.e = 2 * calc.dy - calc.dx;
-
-	if (calc.dx > 0)
-		calc.incX = 1;
-	else
+	mlx_pixel_put(env->mlx, env->win, calc.x, calc.y, 0xFFFFFF);
+	while (calc.x < calc.x1)
 	{
-		calc.incX = -1;
-		calc.dx = -calc.dx;
-	}
-	if (calc.dy > 0)
-		calc.incY = 1;
-	else
-	{
-		calc.incY = -1;
-		calc.dy = -calc.dy;
-	}
-	if (calc.dx > calc.dy)
-	{
-		while (calc.x <= calc.x1)
+		if (calc.dp <= 0)
 		{
-			mlx_pixel_put(env->mlx, env->win, calc.x, calc.y,0xFFFFFF);
+			calc.dp = calc.dp + calc.deltaE;
 			calc.x++;
 		}
-		if (calc.e >= 0)
-		{
-			calc.y += 1;
-			calc.e += calc.incrE;
-		}
 		else
-			calc.e += calc.incrNE;
-	}
-	else
-	{
-		while (calc.y <= calc.y1)
 		{
-			mlx_pixel_put(env->mlx, env->win, calc.y, calc.x,0xFFFFFF);
+			calc.dp = calc.dp + calc.deltaNE;
+			calc.x++;
 			calc.y++;
 		}
-		if (calc.e >= 0)
-		{
-			calc.y += 1;
-			calc.e += calc.incrE;
-		}
-		else
-			calc.e += calc.incrNE;
+		mlx_pixel_put(env->mlx, env->win, calc.x, calc.y, 0xFFFFFF);
 	}
+	return (0);
+}
+
+static int		ft_grille(t_env *env, t_calc calc, t_stock stock)
+{
+	int		startx;
+	int		starty;
+	int		endx;
+	int		endy;
+
+	// init droite numero 1
+	startx = env->width / 2 - (env->width / 4);
+	endx = env->width - (env->width / 4);
+	starty = env->height / 10;
+	endy = env->height / 2 - (env->height / 6);
+
+	// droite 1 (haut->droite)
+	stock = ft_init_stock(startx, endx, starty, endy);
+	calc = ft_init_calcul(stock);
+	ft_segment(env, calc);
+
+	/*
+	// init droite numero 2
+	startx = env->width / 2 - (env->width / 4);
+	endx = startx % 2;
+	starty = env->height / 10;
+	endy = env->height / 2;
+	// droite 2 (haut->gauche)
+	stock = ft_init_stock(startx, endx , starty, endy);
+	calc = ft_init_calcul(stock);
+	ft_segment(env, calc);
+*/
+	return (0);
+}
+int				ft_display(t_env *env)
+{
+	t_calc		calc;
+	t_stock		stock;
+
+	stock = ft_init_stock(0, 0, 0, 0);
+	calc = ft_init_calcul(stock);
+	ft_grille(env, calc, stock);
 	return (0);
 }

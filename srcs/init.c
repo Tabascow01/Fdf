@@ -6,29 +6,42 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/17 23:59:13 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/18 05:18:08 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_calc	ft_init_calcul(void)
+t_stock	ft_init_stock(int x0, int x1, int y0, int y1)
+{
+	t_stock stock;
+
+	stock.x0 = x0;
+	stock.x1 = x1;
+	stock.y0 = y0;
+	stock.y1 = y1;
+	stock.z0 = 50;
+	stock.z1 = 350;
+	stock.z2 = 650;
+	stock.z3 = 950;
+	return (stock);
+}
+
+t_calc	ft_init_calcul(t_stock stock)
 {
 	t_calc calc;
 
-	calc.x = 200;
-	calc.y = 700;
-	calc.x0 = 250;
-	calc.y0 = 250;
-	calc.x1 = 750;
-	calc.y1 = 750;
+	calc.y = stock.y0;
+	calc.x0 = stock.x0;
+	calc.y0 = stock.y0;
+	calc.x = stock.x0;
+	calc.x1 = stock.x1;
+	calc.y1 = stock.y1;
 	calc.dx = calc.x1 - calc.x0;
 	calc.dy = calc.y1 - calc.y0;
-	calc.e = 0;
-	calc.incrE = 0;
-	calc.incrNE = 0;
-	calc.incX = 0;
-	calc.incY = 0;
+	calc.dp = 2 * calc.dy - calc.dx;
+	calc.deltaE = 2 * calc.dy;
+	calc.deltaNE = 2 * (calc.dy - calc.dx);
 	return (calc);
 }
 
@@ -48,8 +61,8 @@ t_env	ft_init_env(void)
 
 	env.parser = NULL;
 	env.error = 0;
-	env.height = 720;
-	env.width = 1280;
+	env.height = 1080;
+	env.width = 1920;
 	env.title = "Fdf";
 	env.mlx = mlx_init();
 	if (env.mlx == NULL)
