@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:54 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/19 05:08:34 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/19 05:28:30 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		ft_size_map(t_env *env)
 	i = 0;
 	while (env->parser[i] != '\n')
 	{
-		if ((ft_atoi(&env->parser[i]) != 0) || env->parser[i] != ' ')
+		if ((ft_atoi(&env->parser[i]) >= 0) && env->parser[i] != ' ')
 			x++;
 		i++;
 	}
