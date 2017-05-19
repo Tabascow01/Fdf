@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/18 05:18:08 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/19 04:38:25 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ t_stock	ft_init_stock(int x0, int x1, int y0, int y1)
 	stock.x1 = x1;
 	stock.y0 = y0;
 	stock.y1 = y1;
-	stock.z0 = 50;
-	stock.z1 = 350;
-	stock.z2 = 650;
-	stock.z3 = 950;
 	return (stock);
 }
 
@@ -31,17 +27,15 @@ t_calc	ft_init_calcul(t_stock stock)
 {
 	t_calc calc;
 
-	calc.y = stock.y0;
 	calc.x0 = stock.x0;
 	calc.y0 = stock.y0;
-	calc.x = stock.x0;
 	calc.x1 = stock.x1;
 	calc.y1 = stock.y1;
 	calc.dx = calc.x1 - calc.x0;
 	calc.dy = calc.y1 - calc.y0;
-	calc.dp = 2 * calc.dy - calc.dx;
-	calc.deltaE = 2 * calc.dy;
-	calc.deltaNE = 2 * (calc.dy - calc.dx);
+	calc.a = 0;
+	calc.b = 0;
+	calc.color = 0xFFFFFF;
 	return (calc);
 }
 
@@ -60,6 +54,8 @@ t_env	ft_init_env(void)
 	t_env	env;
 
 	env.parser = NULL;
+	env.size_y = 0;
+	env.size_x = 0;
 	env.error = 0;
 	env.height = 1080;
 	env.width = 1920;

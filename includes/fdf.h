@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/18 05:00:14 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/19 04:52:30 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 typedef struct		s_env
 {
 	char			*parser;
-
+	int				size_y;
+	int				size_x;
 	int				error;
 
 	void			*mlx;
@@ -42,34 +43,27 @@ typedef struct		s_parse
 
 typedef struct		s_calc
 {
+	double a;
+	double b;
 	int x;
 	int y;
-	int x0;
-	int y0;
-	int x1;
-	int y1;
+	double x0;
+	double y0;
+	double x1;
+	double y1;
 	int dx;
 	int dy;
-	int deltaE;
-	int	deltaNE;
-	int	dp;
-//	int e;
-//	int	incX;
-//	int	incY;
+	unsigned int color;
 }					t_calc;
 
 typedef struct		s_stock
 {
 	int x;
-	int x0;
-	int x1;
+	double x0;
+	double x1;
 	int y;
-	int y0;
-	int y1;
-	int z0;
-	int z1;
-	int z2;
-	int z3;
+	double y0;
+	double y1;
 }					t_stock;
 
 int		ft_display(t_env *env);
