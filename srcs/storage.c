@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static int	ft_counter(t_env *env)
+static int	ft_counter_x(t_env *env)
 {
 	int i;
 	int counter;
@@ -30,6 +30,7 @@ static int	ft_counter(t_env *env)
 			counter++;
 		i++;
 	}
+	env->size_x = counter;
 	return (counter);
 }
 
@@ -39,9 +40,9 @@ void	ft_store_altitude(t_parse *parser, t_env *env)
 	int j;
 
 	j = 0;
-	i = ft_counter(env);
-	ft_printf("counter[%d]\n", i);
-	parser->altitude = ft_memalloc(i);
+	i = ft_counter_x(env);
+	ft_printf("y[%d]\nx[%d]\n", env->size_y, env->size_x);
+	parser->altitude = ft_strnew(i);
 	i = 0;
 	while (env->parser[i])
 	{
@@ -69,7 +70,7 @@ void	ft_store_color(t_parse *parser, t_env *env, int *i)
 
 	j = 0;
 	tmp = parser->color;
-	counter = ft_counter(env);
+	counter = ft_counter_x(env);
 	if (parser->color == NULL)
 		parser->color = (char **)malloc(sizeof(char *) * counter);
 	while (env->parser[(*i)] != ' ' && env->parser[(*i)])
