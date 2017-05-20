@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/19 04:52:30 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/20 01:59:10 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct		s_parse
 {
 	struct s_parse	*next;
 
+	char			**color;
+	char			*altitude;
 	int				fd;
 
 }					t_parse;
@@ -75,6 +77,9 @@ void	ft_clear_parser(t_parse *parser);
 
 void	ft_error_mlx_ptr(t_env *env);
 void	ft_error_win_ptr(t_env *env);
+
+void	ft_store_altitude(t_parse *parser, t_env *env);
+void	ft_store_color(t_parse *parser, t_env *env, int *i);
 
 t_stock	ft_init_stock(int x0, int x1, int y0, int y1);
 t_calc	ft_init_calcul();

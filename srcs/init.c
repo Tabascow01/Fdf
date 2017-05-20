@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/19 04:38:25 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/20 00:47:02 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_parse	*ft_init_parser(void)
 	parser = (t_parse *)malloc(sizeof(parser));
 	parser->next = NULL;
 	parser->fd = 0;
+	parser->color = NULL;
+	parser->altitude = 0;
 	return(parser);
 }
 

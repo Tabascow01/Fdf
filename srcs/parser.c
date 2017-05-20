@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:54 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/19 05:28:30 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/20 01:48:27 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static int		ft_size_map(t_env *env)
 	i = 0;
 	while (env->parser[i] != '\n')
 	{
-		if ((ft_atoi(&env->parser[i]) >= 0) && env->parser[i] != ' ')
-			x++;
+		if (env->parser[i] != '0' && env->parser[ i + 1] != 'x')
+			if ((ft_atoi(&env->parser[i]) >= 0)
+					&& env->parser[i - 1] == ' ')
+				x++;
 		i++;
 	}
 	env->size_y = y;
@@ -42,7 +44,18 @@ static int		ft_size_map(t_env *env)
 
 static	void	ft_store_map(t_parse *parser, t_env *env)
 {
+	int i;
 	env->parser = ft_get_file(parser->fd);
+	ft_store_altitude(parser, env);
+
+
+	ft_printf("color[%s]\n", parser->color);
+	i = 18;
+	while (i > 0)
+	{
+		ft_printf("altitude[%d]\n", parser->altitude++);
+		i--;
+	}
 	ft_size_map(env);
 }
 

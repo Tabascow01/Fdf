@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 04:59:07 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/14 03:35:38 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/20 01:34:02 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(int argc, char *argv[])
 	env.error = ft_parser(parser, &env, argv);
 	if (env.error != 0)
 		ft_putstr_fd("Error[1] parser\n", 2);
-	ft_window(&env);
-	mlx_loop(env.mlx);
+//	ft_window(&env);
+//	mlx_loop(env.mlx);
 	return (0);
 }
