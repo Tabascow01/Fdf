@@ -63,10 +63,10 @@ char	**ft_store_altitude(t_env *env, t_parse *parser)
 
 	j = 0;
 	ft_counter_x(env);
-	if (!(tab = (char **)malloc(env->size_x * env->size_y * sizeof(tab))))
+	if (!(tab = (char **)malloc((env->size_y * env->size_x) * sizeof(tab))))
 		return (0);
 	if (!(parser->color =
-			(char **)malloc((env->size_x * env->size_y)
+			(char **)malloc((env->size_y * env->size_x)
 				* sizeof(parser->color))))
 		return (0);
 	i = 0;
