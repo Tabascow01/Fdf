@@ -31,11 +31,16 @@ static int		ft_counter_y(t_env *env)
 
 static	void	ft_store_map(t_parse *parser, t_env *env)
 {
+	int i;
+
+	i = 0;
 	env->parser = ft_get_file(parser->fd);
 	ft_counter_y(env);
-	ft_store_altitude(parser, env);
-	ft_printf("color[%s]\n", parser->color);
-	ft_printf("altitude[\n%s]\n", parser->altitude++);
+	parser->altitude = ft_store_altitude(env, parser);
+	ft_printf("x[%d]\ny[%d]\n",env->size_x, env->size_y);
+	ft_printf("color[\n%s]\n", parser->color[0]);
+	ft_printf("altitude[\n%s]\n", parser->altitude[0]);
+	ft_printf("parser:\n%s\n", env->parser);
 }
 
 static	void	ft_open_file(t_parse *parser, char **argv)
