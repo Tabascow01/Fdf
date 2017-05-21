@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/20 01:59:10 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/21 22:02:24 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ typedef struct		s_stock
 	double y0;
 	double y1;
 }					t_stock;
+
+int		ft_counter_y(t_env *env);
+int		ft_counter_x(t_env *env);
 
 int		ft_display(t_env *env);
 int		ft_event(t_env *env);

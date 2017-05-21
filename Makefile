@@ -6,7 +6,7 @@
 #    By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/10 04:47:56 by mchemakh          #+#    #+#              #
-#    Updated: 2017/05/20 00:57:06 by mchemakh         ###   ########.fr        #
+#    Updated: 2017/05/21 21:59:54 by mchemakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fdf
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c window.c event.c error.c display.c storage.c
+SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c window.c event.c error.c display.c storage.c counter.c
 
 SRCS_PATH = srcs/
 

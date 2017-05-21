@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:38 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/14 03:44:40 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/21 22:49:15 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_get_file(int fd)
 	size = 0;
 	if(!(str = ft_strnew(BUFF_SIZE)))
 		return (0);
+	ft_bzero(str, BUFF_SIZE);
 	while ((sizeread = read(fd, str + size, BUFF_SIZE)) > 0)
 	{
 		if (sizeread == -1)
