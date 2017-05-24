@@ -24,8 +24,8 @@ static	void	ft_store_map(t_parse *parser, t_env *env)
 
 	ft_printf("parser:\n%s\n", env->parser);
 	ft_printf("x[%d]\ny[%d]\n",env->size_x, env->size_y);
-	ft_printf("color[\n%s]\n", parser->color[1]);
-	ft_printf("altitude[\n%s]\n", parser->altitude[1]);
+	ft_printf("color[\n%s]\n", parser->color[19]);
+	ft_printf("altitude[\n%s]\n", parser->altitude[19]);
 	ft_strdel(&env->parser);
 //	ft_strdel(parser->color);
 	ft_strdel(parser->altitude);
