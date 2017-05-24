@@ -6,27 +6,35 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 00:57:28 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/21 23:00:46 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/25 00:56:01 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>//
 
 static char		*ft_altitude(t_env *env, int *i)
 {
 	int		k;
+	int		j;
 	char	*altitude;
 
+	j = 0;
 	k = (*i);
 	while (env->parser[k] && env->parser[k] != ' '
-			&& env->parser[k] != ',')
+			&& env->parser[k] != ',' && env->parser[k] != '\n'
+			&& ft_isdigit(env->parser[k]))
+	{
 		k++;
-	if(!(altitude = ft_strnew(k)))
+		j++;
+	}
+	if(!(altitude = ft_strnew(j)))
 		return (0);
-	ft_bzero(altitude, k);
+	ft_bzero(altitude, j);
 	k = 0;
 	while(env->parser[(*i)] && env->parser[(*i)] != ' '
-			&& env->parser[(*i)] != ',')
+			&& env->parser[(*i)] != ',' && env->parser[(*i)] != '\n'
+			&& ft_isdigit(env->parser[(*i)]))
 	{
 		altitude[k++] = env->parser[(*i)];
 		(*i) += 1;
@@ -56,17 +64,18 @@ char	**ft_store_altitude(t_env *env, t_parse *parser)
 	k = 0;
 	while (env->parser[i])
 	{
-		count = 0;
-		if (env->parser[i] == '0' && env->parser[i + 1] == 'x')
+		if (ft_isdigit(env->parser[i]) && (env->parser[i - 1] == ' '
+				|| env->parser[i - 1] == '\n' || env->parser[i - 1] == '\0'))
 		{
-			parser->color[k++] = ft_store_color(env, &i);
-			count++;
-		}
-		if (ft_isdigit(env->parser[i]) && env->parser[i - 1] == ' ')
-		{
+			count = 0;
+			tab[j++] = ft_altitude(env, &i);
+			if (env->parser[i] == ',')
+			{
+				parser->color[k++] = ft_store_color(env, &i);
+				count++;
+			}
 			if (count == 0)
 				parser->color[k++] = "(null)";
-			tab[j++] = ft_altitude(env, &i);
 		}
 		i++;
 	}
@@ -80,13 +89,18 @@ char	*ft_store_color(t_env *env, int *i)
 	int		k;
 	int		j;
 	char	*color;
-
+	if (env->parser[(*i)] == ',')
+		(*i) += 1;
 	k = (*i);
-	j = k;
+	j = 0;
 	while (env->parser[k] && env->parser[k] != ' ')
+	{
 		k++;
-	if (!(color = ft_strnew(k)))
+		j++;
+	}
+	if (!(color = ft_strnew(j)))
 		return (0);
+	j = (*i);
 	k = 0;
 	while (env->parser[j] && env->parser[j] != ' ')
 		color[k++] = env->parser[j++];
