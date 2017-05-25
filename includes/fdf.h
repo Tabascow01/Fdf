@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/21 22:02:24 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/25 04:59:49 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ typedef struct		s_env
 	int				height;
 	int				width;
 	char			*title;
+
+	double			adj_x;
+	double			adj_y;
+	double			diff_y;
+	double			diff_x;
 }					t_env;
 
 typedef struct		s_parse

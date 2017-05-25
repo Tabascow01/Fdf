@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/20 00:47:02 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/25 05:38:33 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_parse	*ft_init_parser(void)
 	parser->next = NULL;
 	parser->fd = 0;
 	parser->color = NULL;
-	parser->altitude = 0;
+	parser->altitude = NULL;
 	return(parser);
 }
 
@@ -55,6 +55,10 @@ t_env	ft_init_env(void)
 {
 	t_env	env;
 
+	env.diff_x = 0;
+	env.diff_y = 0;
+	env.adj_y = 0.0;
+	env.adj_x = 0.0;
 	env.parser = NULL;
 	env.size_y = 0;
 	env.size_x = 0;

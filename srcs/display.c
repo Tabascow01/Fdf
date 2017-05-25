@@ -6,11 +6,49 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:23 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/19 05:02:41 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/25 05:41:49 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int		ft_format_grid(t_env *env)
+{
+	double	size;
+
+	size = 0;
+	if (env->size_y == env->size_x)
+	{
+		env->adj_x = 1;
+		env->adj_y = 1;
+		return (1);
+	}
+	else
+	{
+		size = env->size_y * env->size_x;
+		while (size >= 10)
+			size /= 10;
+		if (size > 0)
+		{
+			if (env->size_x > env->size_y)
+			{
+				env->diff_y = env->size_x - env->size_y;
+				env->diff_x = 0;
+				env->adj_x = ((double)env->size_x / (double)env->size_y);
+				env->adj_y = ((double)env->size_y / (double)env->size_x);
+			}
+			else
+			{
+				env->diff_x = env->size_y - env->size_x;;
+				env->diff_y = 0;
+				env->adj_x = ((double)env->size_y / (double)env->size_x);
+				env->adj_y = ((double)env->size_x / (double)env->size_y);
+			}
+		}
+//		printf("adj_X[%.4f] - adj_y[%.4f]\n", env->adj_x, env->adj_y);
+	}
+	return (0);
+}
 
 static int		ft_segment(t_env *env, t_calc calc)
 {
@@ -39,51 +77,6 @@ static int		ft_segment(t_env *env, t_calc calc)
 	return (0);
 }
 
-static int		ft_border(t_env *env, t_calc calc, t_stock stock)
-{
-	int	x0;
-	int	x1;
-	int	y0;
-	int	y1;
-
-	x0 = env->width / 2;
-	x1 = env->width - (env->width / 4);
-	y0 = env->height / 4;
-	y1 = env->height / 2;
-
-	stock = ft_init_stock(x0, x1, y0, y1);
-	calc = ft_init_calcul(stock);
-	ft_segment(env, calc);
-
-	x0 = env->width / 4;
-	x1 = calc.x0;
-	y0 = env->height / 2;
-	y1 = calc.y0;
-
-	stock = ft_init_stock(x0, x1, y0, y1);
-	calc = ft_init_calcul(stock);
-	ft_segment(env, calc);
-
-	x0 = calc.x0;
-	x1 = env->width / 2;
-	y0 = calc.y0;
-	y1 = 3 * env->height / 4;
-
-	stock = ft_init_stock(x0, x1, y0, y1);
-	calc = ft_init_calcul(stock);
-	ft_segment(env, calc);
-
-	x0 = calc.x1;
-	x1 = 3 * (env->width / 4);
-	y0 = calc.y1;
-	y1 = env->height / 2;
-
-	stock = ft_init_stock(x0, x1, y0, y1);
-	calc = ft_init_calcul(stock);
-	ft_segment(env, calc);
-	return (0);
-}
-
 static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 {
 	float	i;
@@ -91,9 +84,18 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 	float	x1;
 	float	y0;
 	float	y1;
+	double	adj;
 
+	adj = 1;
+	if (env->adj_y < 1 && env->adj_y > 0)
+		adj = env->adj_y;
+	else if (env->adj_y > 1)
+		adj = env->adj_x;
+	else
+		adj = 1;
 	i = 0;
-	while (i * 16 < env->width / 4)
+//	printf("diff_y[%f] - diff_x[%f]\n", env->diff_y, env->diff_x);
+	while (i * 16 < ((env->width / 4) * adj)) // '\'
 	{
 		x0 = env->width / 4 + (i * 16);
 		x1 = env->width / 2 + (i * 16);
@@ -103,14 +105,14 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 		stock = ft_init_stock(x0, x1, y0, y1);
 		calc = ft_init_calcul(stock);
 		ft_segment(env, calc);
-		i += (float)((env->width / 4) / 16) / env->size_y;
+		i += ((float)(((env->width / 4) * adj) / 16) / env->size_y);
 	}
 	i = 0;
-	while (i * 16 < env->width / 4)
+	while (i * 16 < (env->width / 4))// '/'
 	{
 		x0 = env->width / 2 - (i * 16);
-		x1 = 3 * (env->width / 4) - (i * 16);
-		y0 = 3 * env->height / 4 - (i * 9);
+		x1 = 3 * (env->width / 4) - (i * 16) ;
+		y0 = 3 * (env->height / 4) - (i * 9);
 		y1 = env->height / 2 - (i * 9);
 
 		stock = ft_init_stock(x0, x1, y0, y1);
@@ -122,7 +124,7 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 }
 static int		ft_grille(t_env *env, t_calc calc, t_stock stock)
 {
-	ft_border(env, calc, stock);
+	ft_format_grid(env);
 	ft_fill(env, calc, stock);
 	return (0);
 }
