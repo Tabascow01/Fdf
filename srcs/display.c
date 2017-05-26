@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:23 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/25 05:41:49 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/26 04:37:20 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ static int		ft_format_grid(t_env *env)
 		{
 			if (env->size_x > env->size_y)
 			{
-				env->diff_y = env->size_x - env->size_y;
-				env->diff_x = 0;
+				env->diff_y = env->size_x * (env->size_x - env->size_y);
+				env->diff_x = env->size_x * env->size_y;
 				env->adj_x = ((double)env->size_x / (double)env->size_y);
 				env->adj_y = ((double)env->size_y / (double)env->size_x);
 			}
 			else
 			{
-				env->diff_x = env->size_y - env->size_x;;
-				env->diff_y = 0;
+				env->diff_y = env->size_y * (env->size_y - env->size_x);
+				env->diff_x = env->size_y * env->size_x;
 				env->adj_x = ((double)env->size_y / (double)env->size_x);
 				env->adj_y = ((double)env->size_x / (double)env->size_y);
 			}
@@ -94,7 +94,6 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 	else
 		adj = 1;
 	i = 0;
-//	printf("diff_y[%f] - diff_x[%f]\n", env->diff_y, env->diff_x);
 	while (i * 16 < ((env->width / 4) * adj)) // '\'
 	{
 		x0 = env->width / 4 + (i * 16);
@@ -111,14 +110,29 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 	while (i * 16 < (env->width / 4))// '/'
 	{
 		x0 = env->width / 2 - (i * 16);
-		x1 = 3 * (env->width / 4) - (i * 16) ;
+		x1 = (3 * (env->width / 4) + (env->width / 4 / env->size_x * env->size_y)) - (i * 16) ;
+//		x1 = 3 * (env->width / 4) - (i * 16) ;
 		y0 = 3 * (env->height / 4) - (i * 9);
-		y1 = env->height / 2 - (i * 9);
+		y1 = env->height / 2 + (env->height / 4 / env->size_x * (env->size_x - env->size_y)) - (i * 9);
+//		y1 = (env->height / 2) - (i * 9);
 
 		stock = ft_init_stock(x0, x1, y0, y1);
 		calc = ft_init_calcul(stock);
 		ft_segment(env, calc);
 		i += (float)((env->width / 4) / 16) / env->size_x;
+	}
+	int x;
+	int y = 0;
+	while (y < 1080)
+	{
+		x = 0;
+		while (x < 1920)
+		{
+			if (x == 1920 / 2)
+				mlx_pixel_put(env->mlx, env->win, x, y, 0xFF0000);
+			x++;
+		}
+		y++;
 	}
 	return (0);
 }
