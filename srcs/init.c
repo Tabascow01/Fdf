@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-t_stock	ft_init_stock(int x0, int x1, int y0, int y1)
+t_stock	ft_init_stock(double x0, double x1, double y0, double y1)
 {
 	t_stock stock;
 
@@ -23,7 +23,7 @@ t_stock	ft_init_stock(int x0, int x1, int y0, int y1)
 	return (stock);
 }
 
-t_calc	ft_init_calcul(t_stock stock)
+t_calc		ft_init_calcul(t_stock stock)
 {
 	t_calc calc;
 
@@ -33,13 +33,13 @@ t_calc	ft_init_calcul(t_stock stock)
 	calc.y1 = stock.y1;
 	calc.dx = calc.x1 - calc.x0;
 	calc.dy = calc.y1 - calc.y0;
-	calc.a = 0;
-	calc.b = 0;
-	calc.color = 0xFFFFFF;
+	calc.a = 0.0;
+	calc.b = 0.0;
+	calc.color = 0x00FF00;
 	return (calc);
 }
 
-t_parse	*ft_init_parser(void)
+t_parse		*ft_init_parser(void)
 {
 	t_parse	*parser;
 
@@ -51,17 +51,17 @@ t_parse	*ft_init_parser(void)
 	return(parser);
 }
 
-t_env	ft_init_env(void)
+t_env		ft_init_env(void)
 {
 	t_env	env;
 
-	env.diff_x = 0;
-	env.diff_y = 0;
+	env.diff_x = 0.0;
+	env.diff_y = 0.0;
 	env.adj_y = 0.0;
 	env.adj_x = 0.0;
 	env.parser = NULL;
-	env.size_y = 0;
-	env.size_x = 0;
+	env.size_y = 0.0;
+	env.size_x = 0.0;
 	env.error = 0;
 	env.height = 1080;
 	env.width = 1920;

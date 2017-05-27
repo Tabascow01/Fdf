@@ -128,32 +128,33 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 	else
 		adj = 1;
 	i = 0;
-//	while (i < env->height / 2)
-//	{
-		x0 = env->width / 2;
-		y0 = env->height / 4 * 0.8;
-		x1 = (3 * env->width / 4);
-		y1 = env->height / 2;
+	while (i * 16 < ((env->width / 4) * adj)) // '\'
+	{
+		x0 = env->width / 4 + (i * 16);
+		x1 = env->width / 2 + (i * 16);
+		y0 = env->height / 2 - (i * 9);
+		y1 = 3 * env->height / 4 - (i * 9);
 
 		stock = ft_init_stock(x0, x1, y0, y1);
 		calc = ft_init_calcul(stock);
 		ft_segment(env, calc);
-//		i += (double)((env->width / 2 - (env->width / 4 * 1.25)) / env->size_y);
-//	}
+		i += (double)((((env->width / 4) * adj) / 16) / env->size_y);
+	}
 	i = 0;
-/*
 	while (i * 16 < (env->width / 4))// '/'
 	{
-		x0 = env->width / 2 - ((env->width / 4) * 1.25);
-		y0 = calc.y0;
-		x1 = calc.x1;
-		y1 = env->height / 2 + ((env->height / 4) * 0.80);
+		x0 = env->width / 2 - (i * 16);
+		x1 = (3 * (env->width / 4) + (env->width / 4 / env->size_x * env->size_y)) - (i * 16) ;
+//		x1 = 3 * (env->width / 4) - (i * 16) ;
+		y0 = 3 * (env->height / 4) - (i * 9);
+		y1 = env->height / 2 + (env->height / 4 / env->size_x * (env->size_x - env->size_y)) - (i * 9);
+//		y1 = (env->height / 2) - (i * 9);
+
 		stock = ft_init_stock(x0, x1, y0, y1);
 		calc = ft_init_calcul(stock);
 		ft_segment(env, calc);
 		i += (double)(((env->width / 4) / 16) / env->size_x);
 	}
-*/
 	ft_vertical(env);
 	ft_horizontal(env);
 	return (0);

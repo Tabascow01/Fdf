@@ -21,15 +21,15 @@
 typedef struct		s_env
 {
 	char			*parser;
-	int				size_y;
-	int				size_x;
+	double			size_y;
+	double			size_x;
 	int				error;
 
 	void			*mlx;
 	void			*win;
 
-	int				height;
-	int				width;
+	double			height;
+	double			width;
 	char			*title;
 
 	double			adj_x;
@@ -58,8 +58,8 @@ typedef struct		s_calc
 	double y0;
 	double x1;
 	double y1;
-	int dx;
-	int dy;
+	double dx;
+	double dy;
 	unsigned int color;
 }					t_calc;
 
@@ -89,7 +89,7 @@ void	ft_error_win_ptr(t_env *env);
 char	**ft_store_altitude(t_env *env, t_parse *parser);
 char	*ft_store_color(t_env *env, int *i);
 
-t_stock	ft_init_stock(int x0, int x1, int y0, int y1);
+t_stock	ft_init_stock(double x0, double x1, double y0, double y1);
 t_calc	ft_init_calcul();
 t_env	ft_init_env();
 t_parse	*ft_init_parser();
