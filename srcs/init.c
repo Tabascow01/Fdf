@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/25 05:38:33 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/29 04:56:23 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_env		ft_init_env(void)
 {
 	t_env	env;
 
+	env.diff = 0.0;
 	env.diff_x = 0.0;
 	env.diff_y = 0.0;
 	env.adj_y = 0.0;
@@ -62,6 +63,7 @@ t_env		ft_init_env(void)
 	env.parser = NULL;
 	env.size_y = 0.0;
 	env.size_x = 0.0;
+	env.winform = 0;
 	env.error = 0;
 	env.height = 1080;
 	env.width = 1920;

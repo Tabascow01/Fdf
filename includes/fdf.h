@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/25 04:59:49 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/29 05:41:54 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ typedef struct		s_env
 	double			height;
 	double			width;
 	char			*title;
+	int				winform;
 
 	double			adj_x;
 	double			adj_y;
 	double			diff_y;
 	double			diff_x;
+	double			diff;
 }					t_env;
 
 typedef struct		s_parse
@@ -73,12 +75,20 @@ typedef struct		s_stock
 	double y1;
 }					t_stock;
 
+void	ft_segment_lenght(t_env *env, t_stock *stock, int d);
+
+void	ft_horizontal(t_env *env);
+void	ft_vertical(t_env *env);
+
 int		ft_counter_y(t_env *env);
 int		ft_counter_x(t_env *env);
 
 int		ft_display(t_env *env);
 int		ft_event(t_env *env);
 int		ft_window(t_env *env);
+
+int		ft_segment(t_env *env, t_calc calc);
+int		ft_format_grid(t_env *env);
 
 void	ft_clear_env(t_env *env);
 void	ft_clear_parser(t_parse *parser);
