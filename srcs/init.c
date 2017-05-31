@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/29 04:56:23 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/31 04:47:14 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ t_env		ft_init_env(void)
 	env.size_x = 0.0;
 	env.winform = 0;
 	env.error = 0;
-	env.height = 1000;
-	env.width = 1500;
-	env.title = "Fdf";
+	env.height = 1080;
+	env.width = 1920;
+//	env.title = ft_strnew(3);
+//	env.title = "Fdf";
 	env.mlx = mlx_init();
 	if (env.mlx == NULL)
 		ft_error_mlx_ptr(&env);
-	env.win = mlx_new_window(env.mlx, env.width, env.height, env.title);
+	env.win = mlx_new_window(env.mlx, env.width, env.height, "Fdf");
 	if (env.win == NULL)
 		ft_error_win_ptr(&env);
 	return (env);

@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 00:57:28 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/25 05:41:32 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/31 05:17:51 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ char	**ft_store_altitude(t_env *env, t_parse *parser)
 				count++;
 			}
 			if (count == 0)
+			{
+				parser->color[k] = ft_strnew(6);
 				parser->color[k++] = "(null)";
+			}
 		}
 		i++;
 	}
@@ -88,6 +91,7 @@ char	*ft_store_color(t_env *env, int *i)
 	int		k;
 	int		j;
 	char	*color;
+
 	if (env->parser[(*i)] == ',' && env->parser[(*i) + 1] != '\0')
 		(*i) += 1;
 	k = (*i);
@@ -99,10 +103,15 @@ char	*ft_store_color(t_env *env, int *i)
 	}
 	if (!(color = ft_strnew(j)))
 		return (0);
+	ft_bzero(color, j);
 	j = (*i);
 	k = 0;
 	while (env->parser[j] && env->parser[j] != ' ')
-		color[k++] = env->parser[j++];
+	{
+		color[k] = env->parser[j];
+		k++;
+		j++;
+	}
 	color[k] = '\0';
 	(*i) += k;
 	return (color);

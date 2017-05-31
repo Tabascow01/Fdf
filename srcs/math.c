@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 00:44:14 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/29 05:41:40 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/05/31 04:07:31 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 				stock->x1 = (env->width / 8) * 0.8;
 		}
 	}
-	else
+	else if (env->width > env->height)
 	{
 		if (env->size_x == env->size_y)
 		{
@@ -155,6 +155,29 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 				stock->x1 = (env->width / 4 * 0.8);
 		}
 	}
+	else
+	{
+		if (env->size_x == env->size_y)
+		{
+			stock->x0 = env->width / 2;
+			stock->y0 = env->height / 4;
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = 0;
+			else if (d == 2)
+				stock->x1 = 0;
+		}
+		else
+		{
+			stock->x0 = env->width / 2;
+			stock->y0 = (env->height / 4) * 1.2;
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 8 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 8 * 0.8);
+		}
+	}
 }
 
 void			ft_segment_lenght(t_env *env, t_stock *stock, int d)
@@ -166,7 +189,14 @@ void			ft_segment_lenght(t_env *env, t_stock *stock, int d)
 		else							// map rectangle
 			ft_calc_length(env, stock, d);
 	}
-	else								// Window rectangle
+	else if (env->width > env->height)	// Window rectangle
+	{
+		if (env->size_x == env->size_y)	// map carre
+			ft_calc_length(env, stock, d);
+		else							// map rectangle
+			ft_calc_length(env, stock, d);
+	}
+	else
 	{
 		if (env->size_x == env->size_y)	// map carre
 			ft_calc_length(env, stock, d);
