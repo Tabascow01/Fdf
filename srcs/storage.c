@@ -53,36 +53,39 @@ char	**ft_store_altitude(t_env *env, t_parse *parser)
 	j = 0;
 	if (env->size_y == 0 && env->size_x == 0)
 		return (0);
-	if (!(tab = (char **)malloc((env->size_y * env->size_x) * sizeof(tab))))
+	if (!(tab = (char **)malloc((env->size_y * env->size_x) * sizeof(tab) + 1)))
 		return (0);
 	if (!(parser->color =
 			(char **)malloc((env->size_y * env->size_x)
-				* sizeof(parser->color))))
+				* sizeof(parser->color) + 1)))
 		return (0);
 	i = 0;
 	k = 0;
 	while (env->parser[i])
 	{
-		if (ft_isdigit(env->parser[i]) && (env->parser[i - 1] == ' '
-				|| env->parser[i - 1] == '\n' || env->parser[i - 1] == '\0'))
+		if (ft_isdigit(env->parser[i]) && (i == 0 || env->parser[i - 1] == ' '
+				|| env->parser[i - 1] == '\n'))
 		{
 			count = 0;
-			tab[j++] = ft_altitude(env, &i);
+			tab[j] = ft_altitude(env, &i);
 			if (env->parser[i] == ',')
 			{
-				parser->color[k++] = ft_store_color(env, &i);
+				parser->color[k] = ft_store_color(env, &i);
+				k++;
 				count++;
 			}
 			if (count == 0)
 			{
 				parser->color[k] = ft_strnew(6);
-				parser->color[k++] = "(null)";
+				parser->color[k] = "(null)";
+				k++;
 			}
+			j++;
 		}
 		i++;
 	}
-	tab[j] = NULL;
-	parser->color[k] = NULL;
+//	tab[j] = 0; // Error alloc
+//	parser->color[k] = 0; // Error alloc
 	return (tab);
 }
 

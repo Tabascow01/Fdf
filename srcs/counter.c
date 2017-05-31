@@ -32,8 +32,8 @@ int		ft_counter_y(t_env *env)
 
 int		ft_counter_x(t_env *env)
 {
-	int i;
-	double counter;
+	int		i;
+	double	counter;
 	int		color;
 
 	counter	 = 0.0;
@@ -49,7 +49,7 @@ int		ft_counter_x(t_env *env)
 		}
 		else if (env->parser[i] == ' ' || env->parser[i] == ',')
 			i++;
-		if ((env->parser[i - 1] == ' ' || env->parser[i - 1] == '\0'
+		if ((env->parser[i - 1] == ' ' || i == 0
 					|| env->parser[i - 1] == '\n')
 				&& ft_isdigit(env->parser[i]) && color == 0)
 		{

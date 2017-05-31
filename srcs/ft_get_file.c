@@ -30,11 +30,6 @@ char	*ft_get_file(int fd)
 		size += sizeread;
 		str = ft_reallocf(str, sizeread);
 	}
-	if (sizeread > 0)
-	{
-		size += sizeread;
-		str = ft_reallocf(str, sizeread);
-	}
 	str[size] = '\0';
 	return (str);
 }

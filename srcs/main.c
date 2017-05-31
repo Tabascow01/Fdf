@@ -15,17 +15,16 @@
 int		main(int argc, char *argv[])
 {
 	t_env		env;
-	t_parse		*parser;
 
 	if (argc != 2 && argv)
 		return (0);
-	parser = NULL;
 	env = ft_init_env();
-	env.error = ft_parser(parser, &env, argv);
+	env.error = ft_parser(&env, argv);
 	if (env.error != 0)
 		ft_putstr_fd("Error[1] parser\n", 2);
 //	ft_window(&env);
 	ft_printf("0-4\n");
-	mlx_loop(env.mlx);
+//	ft_clear_env(&env); // Error ft_strdel();
+//	mlx_loop(env.mlx);
 	return (0);
 }

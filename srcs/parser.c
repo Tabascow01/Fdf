@@ -29,11 +29,14 @@ static	void	ft_open_file(t_parse *parser, char **argv)
 	parser->fd = open(argv[1],O_RDONLY);
 }
 
-int				ft_parser(t_parse *parser, t_env *lst, char **argv)
+int				ft_parser(t_env *lst, char **argv)
 {
+	t_parse *parser;
+
 	parser = ft_init_parser();
 	ft_open_file(parser, argv);
 	ft_store_map(parser, lst);
+//	ft_clear_parser(parser); // Error ft_strdel();
 	ft_printf("0-3\n");
 	return (0);
 }

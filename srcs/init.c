@@ -42,8 +42,7 @@ t_calc		ft_init_calcul(t_stock stock)
 t_parse		*ft_init_parser(void)
 {
 	t_parse	*parser;
-
-	parser = (t_parse *)malloc(sizeof(parser));
+	parser = (t_parse *)malloc(sizeof(t_parse));
 	parser->next = NULL;
 	parser->fd = 0;
 	parser->color = NULL;
@@ -67,12 +66,11 @@ t_env		ft_init_env(void)
 	env.error = 0;
 	env.height = 1080;
 	env.width = 1920;
-//	env.title = ft_strnew(3);
-//	env.title = "Fdf";
+	env.title = "Fdf";
 	env.mlx = mlx_init();
 	if (env.mlx == NULL)
 		ft_error_mlx_ptr(&env);
-	env.win = mlx_new_window(env.mlx, env.width, env.height, "Fdf");
+	env.win = mlx_new_window(env.mlx, env.width, env.height, env.title);
 	if (env.win == NULL)
 		ft_error_win_ptr(&env);
 	return (env);

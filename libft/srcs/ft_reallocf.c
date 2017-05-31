@@ -18,8 +18,8 @@ char	*ft_reallocf(char *ptr, size_t size)
 	int		i;
 
 	newptr = NULL;
-	while (!(newptr = (char *)malloc(sizeof(char) * size + ft_strlen(ptr) + 1)))
-		;
+	if(!(newptr = (char *)malloc(sizeof(char) * size + ft_strlen(ptr) + 1)))
+		return (0);
 	ft_bzero(newptr, size + 1 + ft_strlen(ptr));
 	if (ptr)
 	{

@@ -104,7 +104,7 @@ t_calc	ft_init_calcul();
 t_env	ft_init_env();
 t_parse	*ft_init_parser();
 
-int		ft_parser(t_parse *parser, t_env *env, char **argv);
+int		ft_parser(t_env *env, char **argv);
 
 char	*ft_get_file(int fd);
 
