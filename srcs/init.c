@@ -65,8 +65,8 @@ t_env		ft_init_env(void)
 	env.size_x = 0.0;
 	env.winform = 0;
 	env.error = 0;
-	env.height = 1080;
-	env.width = 1920;
+	env.height = 500;
+	env.width = 500;
 	env.title = "Fdf";
 	env.mlx = mlx_init();
 	if (env.mlx == NULL)

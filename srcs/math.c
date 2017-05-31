@@ -113,17 +113,23 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	{
 		if (env->size_x == env->size_y)
 		{
-			stock->x0 = 0;
-			stock->y0 = 0;
-			stock->x1 = 0;
-			stock->y1 = 0;
+			stock->x0 = env->width / 2;
+			stock->y0 = env->height / 4;
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 8 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 8) * 0.8;
 		}
 		else
 		{
-			stock->x0 = 0;
-			stock->y0 = 0;
-			stock->x1 = 0;
-			stock->y1 = 0;
+			stock->x0 = env->width / 2;
+			stock->y0 = env->height / 4;
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 8 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 8) * 0.8;
 		}
 	}
 	else
@@ -132,16 +138,11 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 		{
 			stock->x0 = env->width / 2;
 			stock->y0 = env->height / 4;
+			stock->y1 = env->height / 2;
 			if (d == 1)
-			{
 				stock->x1 = 0;
-				stock->y1 = 0;
-			}
 			else if (d == 2)
-			{
 				stock->x1 = 0;
-				stock->y1 = 0;
-			}
 		}
 		else
 		{
