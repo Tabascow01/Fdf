@@ -12,7 +12,7 @@
 
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -O1 -fno-optimize-sibling-calls
+CFLAGS = -Wall -Wextra -Werror# -fsanitize=address -O1 -fno-optimize-sibling-calls
 
 SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c window.c event.c error.c display.c storage.c counter.c experimental.c math.c
 

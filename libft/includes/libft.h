@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define BUFF_SIZE 20480
+# define BUFF_SIZE 81820
 
 # include <stdlib.h>
 # include <unistd.h>

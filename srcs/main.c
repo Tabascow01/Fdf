@@ -22,8 +22,8 @@ int		main(int argc, char *argv[])
 	env.error = ft_parser(&env, argv);
 	if (env.error != 0)
 		ft_putstr_fd("Error[1] parser\n", 2);
-	ft_window(&env);
+//	ft_window(&env);
 //	ft_clear_env(&env); // Error ft_strdel();
-	mlx_loop(env.mlx);
+//	mlx_loop(env.mlx);
 	return (0);
 }
