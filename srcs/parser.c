@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:54 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/31 05:08:29 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/01 00:10:40 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 static	void	ft_store_map(t_parse *parser, t_env *env)
 {
-	ft_printf("0-1\n");
 	env->parser = ft_get_file(parser->fd);
 	ft_counter_y(env);
 	ft_counter_x(env);
 	parser->altitude = ft_store_altitude(env, parser);
-	ft_printf("0-2\n");
-	ft_printf("%s\n", env->parser);
+//	ft_printf("%s\n", env->parser);
 //	printf("[%s]\n",parser->color[1]);
 }
 
@@ -37,6 +35,5 @@ int				ft_parser(t_env *lst, char **argv)
 	ft_open_file(parser, argv);
 	ft_store_map(parser, lst);
 //	ft_clear_parser(parser); // Error ft_strdel();
-	ft_printf("0-3\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 00:44:14 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/31 04:07:31 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/01 05:38:04 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_segment(t_env *env, t_calc calc)
 			x0tmp = calc.x0;
 			x1tmp = calc.x1;
 		}
-		printf("x[%.1f:%.1f]y[%.1f:%.1f]\n", x0tmp, x1tmp, y0tmp, y1tmp);
+//		printf("x[%.1f:%.1f]y[%.1f:%.1f]\n", x0tmp, x1tmp, y0tmp, y1tmp);
 		while (x0tmp < x1tmp)
 		{
 			calc.a = (calc.y0 - calc.y1) / (calc.x0 - calc.x1);
@@ -104,11 +104,20 @@ int				ft_window_iscase(t_env *env)
 
 static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 {
-	if (env->size_x >= env->size_y)
-		env->diff = env->size_x / env->size_y;
+	if (env->size_x != env->size_y)
+	{
+		env->diff = (env->size_x - env->size_y) / env->size_x;
+		env->diff_x = env->diff / 2;
+		env->diff_y = env->diff / 2;
+	}
 	else
-		env->diff = env->size_y / env->size_x;
-	printf("diff[%f]\n", env->diff);
+	{
+		env->diff = 1;
+		env->diff_x = 1;
+		env->diff_y = 1;
+	}
+	stock->x0 = env->width / 2;
+	stock->y0 = env->height / 4;
 	if (ft_window_iscase(env))
 	{
 		if (env->size_x == env->size_y)
@@ -140,19 +149,24 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 			stock->y0 = env->height / 4;
 			stock->y1 = env->height / 2;
 			if (d == 1)
-				stock->x1 = 0;
+				stock->x1 = env->width - (env->width / 4 * 0.8);
 			else if (d == 2)
-				stock->x1 = 0;
+				stock->x1 = (env->width / 4) * 0.8;
 		}
 		else
 		{
-			stock->x0 = env->width / 2;
-			stock->y0 = env->height / 4;
-			stock->y1 = env->height / 2;
+			stock->x0 = round(sqrt((stock->x0 - env->width / 4 / 0.8  * env->diff_x) * (stock->x0 - env->width / 4 / 0.8 * env->diff_x)));
+			stock->y0 += round(sqrt((stock->y0 * env->diff_y) * (stock->y0 * env->diff_y)));
 			if (d == 1)
-				stock->x1 = env->width - (env->width / 4 * 0.8);
+			{
+				stock->x1 = round((env->width - (env->width / 4 * 0.8)) - (env->width / 4 * 0.8 * env->diff_x * 0.8));
+				stock->y1 = round((env->height / 2) + (env->height / 2 * env->diff_y * 0.8));
+			}
 			else if (d == 2)
-				stock->x1 = (env->width / 4 * 0.8);
+			{
+				stock->x1 = round(sqrt(((env->width / 4 * 0.8) + (env->width / 4 * 0.8 * env->diff_x)) * (env->width / 4 * 0.8 + (env->width / 4 * 0.8 * env->diff_x))));
+				stock->y1 = round(sqrt(((env->height / 2) - (env->height / 2 * env->diff_y)) * ((env->height / 2) - (env->height / 2 * env->diff_y))));
+			}
 		}
 	}
 	else
@@ -178,6 +192,8 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 				stock->x1 = (env->width / 8 * 0.8);
 		}
 	}
+	printf("diff[%.2f] - diff_y[%.2f] - diff_x[%.2f]\n", env->diff, env->diff_y, env->diff_x);
+//	printf("x[%.2f] - y[%.2f]\n",stock->x0, stock->y0);
 }
 
 void			ft_segment_lenght(t_env *env, t_stock *stock, int d)
@@ -203,5 +219,4 @@ void			ft_segment_lenght(t_env *env, t_stock *stock, int d)
 		else							// map rectangle
 			ft_calc_length(env, stock, d);
 	}
-	printf("x0[%.2f] - y0[%.2f] - x1[%.2f] - y1[%.2f]\n", stock->x0, stock->y0, stock->x1, stock->y1);
 }
