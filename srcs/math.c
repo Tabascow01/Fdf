@@ -12,6 +12,16 @@
 
 #include "fdf.h"
 
+int		ft_icarr(int nb)
+{
+	return (nb * nb);
+}
+
+double	ft_dcarr(double nb)
+{
+	return (nb * nb);
+}
+
 int		ft_segment(t_env *env, t_calc calc)
 {
 	double	x0tmp;
@@ -122,8 +132,6 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	{
 		if (env->size_x == env->size_y)
 		{
-			stock->x0 = env->width / 2;
-			stock->y0 = env->height / 4;
 			stock->y1 = env->height / 2;
 			if (d == 1)
 				stock->x1 = env->width - (env->width / 8 * 0.8);
@@ -132,8 +140,6 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 		}
 		else
 		{
-			stock->x0 = env->width / 2;
-			stock->y0 = env->height / 4;
 			stock->y1 = env->height / 2;
 			if (d == 1)
 				stock->x1 = env->width - (env->width / 8 * 0.8);
@@ -145,8 +151,6 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	{
 		if (env->size_x == env->size_y)
 		{
-			stock->x0 = env->width / 2;
-			stock->y0 = env->height / 4;
 			stock->y1 = env->height / 2;
 			if (d == 1)
 				stock->x1 = env->width - (env->width / 4 * 0.8);
@@ -155,17 +159,23 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 		}
 		else
 		{
-			stock->x0 = round(sqrt((stock->x0 - env->width / 4 / 0.8  * env->diff_x) * (stock->x0 - env->width / 4 / 0.8 * env->diff_x)));
-			stock->y0 += round(sqrt((stock->y0 * env->diff_y) * (stock->y0 * env->diff_y)));
+
+stock->x0 = round(sqrt((stock->x0 - env->width / 4 / 0.8  * env->diff_x) * (stock->x0 - env->width / 4 / 0.8 * env->diff_x)));
+
+stock->y0 += round(sqrt((stock->y0 * env->diff_y) * (stock->y0 * env->diff_y)));
 			if (d == 1)
 			{
-				stock->x1 = round((env->width - (env->width / 4 * 0.8)) - (env->width / 4 * 0.8 * env->diff_x * 0.8));
-				stock->y1 = round((env->height / 2) + (env->height / 2 * env->diff_y * 0.8));
+
+stock->x1 = round((env->width - (env->width / 4 * 0.8)) - (env->width / 4 * 0.8 * env->diff_x * 0.8));
+
+stock->y1 = round((env->height / 2) + (env->height / 2 * env->diff_y * 0.8));
 			}
 			else if (d == 2)
 			{
-				stock->x1 = round(sqrt(((env->width / 4 * 0.8) + (env->width / 4 * 0.8 * env->diff_x)) * (env->width / 4 * 0.8 + (env->width / 4 * 0.8 * env->diff_x))));
-				stock->y1 = round(sqrt(((env->height / 2) - (env->height / 2 * env->diff_y)) * ((env->height / 2) - (env->height / 2 * env->diff_y))));
+
+stock->x1 = round(sqrt(((env->width / 4 * 0.8) + (env->width / 4 * 0.8 * env->diff_x)) * (env->width / 4 * 0.8 + (env->width / 4 * 0.8 * env->diff_x))));
+
+stock->y1 = round(sqrt(((env->height / 2) - (env->height / 2 * env->diff_y)) * ((env->height / 2) - (env->height / 2 * env->diff_y))));
 			}
 		}
 	}
@@ -173,8 +183,6 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	{
 		if (env->size_x == env->size_y)
 		{
-			stock->x0 = env->width / 2;
-			stock->y0 = env->height / 4;
 			stock->y1 = env->height / 2;
 			if (d == 1)
 				stock->x1 = 0;
