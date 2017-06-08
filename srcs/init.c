@@ -6,11 +6,30 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/01 02:13:11 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/08 04:34:10 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_len	ft_init_len(t_env *env, double win_form, int d)
+{
+	t_len len;
+
+	if (d == 1)
+	{
+		ft_win_form1_d1(env, &len, win_form);
+		ft_win_form2_d1(env, &len, win_form);
+		ft_win_form3_d1(env, &len, win_form);
+	}
+	if (d == 2)
+	{
+		ft_win_form1_d2(env, &len, win_form);
+		ft_win_form2_d2(env, &len, win_form);
+		ft_win_form3_d2(env, &len, win_form);
+	}
+	return (len);
+}
 
 t_stock	ft_init_stock(double x0, double x1, double y0, double y1)
 {

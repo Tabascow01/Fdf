@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/29 05:41:54 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/08 04:16:50 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,29 @@ typedef struct		s_calc
 
 typedef struct		s_stock
 {
-	int x;
-	double x0;
-	double x1;
-	int y;
-	double y0;
-	double y1;
+	int		x;
+	double	x0;
+	double	x1;
+	int		y;
+	double	y0;
+	double	y1;
 }					t_stock;
+
+typedef struct		s_len
+{
+	double		o_x1;
+	double		o_y1;
+}					t_len;
+
+void	ft_o_coord(t_len *len, t_stock *stock);
+
+void	ft_win_form1_d1(t_env *env, t_len *len, double win_form);
+void	ft_win_form2_d1(t_env *env, t_len *len, double win_form);
+void	ft_win_form3_d1(t_env *env, t_len *len, double win_form);
+
+void	ft_win_form1_d2(t_env *env, t_len *len, double win_form);
+void	ft_win_form2_d2(t_env *env, t_len *len, double win_form);
+void	ft_win_form3_d2(t_env *env, t_len *len, double win_form);
 
 void	ft_segment_lenght(t_env *env, t_stock *stock, int d);
 
@@ -99,6 +115,7 @@ void	ft_error_win_ptr(t_env *env);
 char	**ft_store_altitude(t_env *env, t_parse *parser);
 char	*ft_store_color(t_env *env, int *i);
 
+t_len	ft_init_len(t_env *env, double win_form, int d);
 t_stock	ft_init_stock(double x0, double x1, double y0, double y1);
 t_calc	ft_init_calcul();
 t_env	ft_init_env();

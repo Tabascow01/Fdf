@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 00:44:14 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/08 04:17:30 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/08 03:34:32 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int				ft_window_iscase(t_env *env)
 static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 {
 	t_len o_len;
-
 	if ((env->diff = ft_calc_percent(env)) < 1)
 	{
 		env->diff_x = env->diff / 2;
@@ -142,28 +141,99 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	ft_calc_percent(env);
 	stock->x0 = env->width / 2;
 	stock->y0 = env->height / 4;
+
 	if (ft_window_iscase(env))
 	{
 		if (env->size_x == env->size_y)
-			o_len = ft_init_len(env, 1.1, d);
+		{
+			o_len = ft_init_len(1.1, d);
+			/*
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 8 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 8) * 0.8;
+		*/
+		}
 		else
-			o_len = ft_init_len(env, 1.2, d);
+		{
+			o_len = ft_init_len(1.2, d);
+			/*
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 8 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 8) * 0.8;
+		*/
+		}
 	}
 	else if (env->width > env->height)
 	{
 		if (env->size_x == env->size_y)
-			o_len = ft_init_len(env, 2.1, d);
+		{
+			o_len = ft_init_len(2.1, d);
+			/*
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 4 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 4) * 0.8;
+			*/
+		}
 		else
-			o_len = ft_init_len(env, 2.2, d);
+		{
+			o_len = ft_init_len(2.2, d);
+			/*
+			stock->x0 = round(sqrt((stock->x0 - env->width / 4 / 0.8 
+							* env->diff_x) * (stock->x0 - env->width / 4 / 0.8 * env->diff_x)));
+			stock->y0 += round(sqrt((stock->y0 * env->diff_y) 
+							* (stock->y0 * env->diff_y)));
+			if (d == 1)
+			{
+				stock->x1 = round((env->width - (env->width / 4 * 0.8)) 
+								- (env->width / 4 * 0.8 * env->diff_x * 0.8));
+				stock->y1 = round((env->height / 2) 
+								+ (env->height / 2 * env->diff_y * 0.8));
+			}
+			else if (d == 2)
+			{
+				stock->x1 = round(sqrt(((env->width / 4 * 0.8) 
+								+ (env->width / 4 * 0.8 * env->diff_x)) 
+								* (env->width / 4 * 0.8 + (env->width / 4 * 0.8 * env->diff_x))));
+				stock->y1 = round(sqrt(((env->height / 2) 
+								- (env->height / 2 * env->diff_y)) 
+								* ((env->height / 2) - (env->height / 2 * env->diff_y))));
+			}
+			*/
+		}
 	}
 	else
 	{
 		if (env->size_x == env->size_y)
-			o_len = ft_init_len(env, 3.1, d);
+		{
+			o_len = ft_init_len(3.1, d);
+			/*
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = 0;
+			else if (d == 2)
+				stock->x1 = 0;
+			*/
+		}
 		else
-			o_len = ft_init_len(env, 3.2, d);
+		{
+			o_len = ft_init_len(3.2, d);
+			/*
+			stock->x0 = env->width / 2;
+			stock->y0 = (env->height / 4) * 1.2;
+			stock->y1 = env->height / 2;
+			if (d == 1)
+				stock->x1 = env->width - (env->width / 8 * 0.8);
+			else if (d == 2)
+				stock->x1 = (env->width / 8 * 0.8);
+			*/
+		}
 	}
-	ft_o_coord(&o_len, stock);
 	printf("diff[%.2f] - diff_y[%.2f] - diff_x[%.2f]\n", env->diff, env->diff_y, env->diff_x);
 //	printf("x[%.2f] - y[%.2f]\n",stock->x0, stock->y0);
 }

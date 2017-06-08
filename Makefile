@@ -6,7 +6,7 @@
 #    By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/10 04:47:56 by mchemakh          #+#    #+#              #
-#    Updated: 2017/06/05 12:01:01 by mchemakh         ###   ########.fr        #
+#    Updated: 2017/06/08 01:14:27 by mchemakh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fdf
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror# -fsanitize=address -O1 -fno-optimize-sibling-calls
 
-SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c window.c event.c error.c display.c storage.c counter.c experimental.c math.c
+SRCS_NAME = main.c init.c parser.c clear.c ft_get_file.c window.c event.c error.c display.c storage.c counter.c experimental.c math.c win_form_d1.c win_form_d2.c
 
 SRCS_PATH = srcs/
 
