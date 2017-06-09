@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 00:44:14 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/08 04:17:30 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/09 02:27:50 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ double	ft_calc_percent(t_env *env)
 		percent = (env->size_x - env->size_y) / env->size_x;
 	else
 		percent = (env->size_y - env->size_x) / env->size_y;
-	printf("percent[%.2f]\n", percent);
 	return (percent);
 }
 
@@ -165,7 +164,7 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	}
 	ft_o_coord(&o_len, stock);
 	printf("diff[%.2f] - diff_y[%.2f] - diff_x[%.2f]\n", env->diff, env->diff_y, env->diff_x);
-//	printf("x[%.2f] - y[%.2f]\n",stock->x0, stock->y0);
+	printf("x0[%.2f] - y0[%.2f]\nx1[%.2f] - y1[%.2f]\n",stock->x0, stock->y0, stock->x1, stock->y1);
 }
 
 void			ft_segment_lenght(t_env *env, t_stock *stock, int d)

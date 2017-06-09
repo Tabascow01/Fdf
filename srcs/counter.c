@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 22:00:04 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/05/29 00:40:53 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/09 05:00:08 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,18 @@ int		ft_counter_x(t_env *env)
 		}
 		else if (env->parser[i] == ' ' || env->parser[i] == ',')
 			i++;
+
 		if ((env->parser[i - 1] == ' ' || i == 0
 					|| env->parser[i - 1] == '\n')
 				&& ft_isdigit(env->parser[i]) && color == 0)
 		{
-			counter += 1.0;
+			counter += 1;
 			while(ft_isdigit(env->parser[i]) && env->parser[i]
 					&& env->parser[i] != '\n')
 				i++;
 		}
+		else
+			i++;
 	}
 	env->size_x = counter;
 	return (0);

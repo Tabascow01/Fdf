@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:23 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/01 03:23:27 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/09 05:23:15 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 		//stock = ft_init_stock(x0, x1, y0, y1);
 		calc = ft_init_calcul(stock);
 		ft_segment(env, calc);
-		printf("x0[%f] - y0[%f]\nx1[%f] - y1[%f]\n",calc.x0, calc.y0, calc.x1, calc.y1);
 //		i += (double)((env->width / 2 - (env->width / 4 * 1.25)) / env->size_y);
 //	}
 	i = 0;
@@ -44,8 +43,12 @@ static int		ft_fill(t_env *env, t_calc calc, t_stock stock)
 //		i += (double)(((env->width / 4) / 16) / env->size_x);
 //	}
 
-	ft_vertical(env);
-	ft_horizontal(env);
+	// Fonction d'affichage echelle (experimental.c)
+	ft_win_v(env);
+	ft_win_h(env);
+	ft_win_d1(env);
+	ft_win_d2(env);
+	ft_init_stock(0, 0, 0, 0); // Reset valeurs stock
 	return (0);
 }
 

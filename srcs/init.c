@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/08 04:34:10 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/09 03:30:34 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ t_len	ft_init_len(t_env *env, double win_form, int d)
 {
 	t_len len;
 
+	len.o_x0 = 0;
+	len.o_x1 = 0;
+	len.o_y0 = 0;
+	len.o_y1 = 0;
 	if (d == 1)
 	{
 		ft_win_form1_d1(env, &len, win_form);

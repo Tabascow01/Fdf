@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/08 04:16:50 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/09 05:08:25 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct		s_stock
 
 typedef struct		s_len
 {
+	double		o_x0;
+	double		o_y0;
 	double		o_x1;
 	double		o_y1;
 }					t_len;
@@ -93,8 +95,10 @@ void	ft_win_form3_d2(t_env *env, t_len *len, double win_form);
 
 void	ft_segment_lenght(t_env *env, t_stock *stock, int d);
 
-void	ft_horizontal(t_env *env);
-void	ft_vertical(t_env *env);
+void	ft_win_d1(t_env *env);
+void	ft_win_d2(t_env *env);
+void	ft_win_h(t_env *env);
+void	ft_win_v(t_env *env);
 
 int		ft_counter_y(t_env *env);
 int		ft_counter_x(t_env *env);
