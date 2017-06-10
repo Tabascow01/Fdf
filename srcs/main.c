@@ -16,12 +16,14 @@ int		main(int argc, char *argv[])
 {
 	t_env		env;
 
-	if (argc != 2 && argv)
-		return (0);
+	if (argc < 2 && argv)
+		ft_error_usage();
+	if (argv[2] != NULL && !ft_strcmp(argv[2], "-h"))
+		ft_error_list();
 	env = ft_init_env();
 	env.error = ft_parser(&env, argv);
-	if (env.error != 0)
-		ft_putstr_fd("Error[1] parser\n", 2);
+	if (env.error > 2)
+		return (0);
 	ft_window(&env);
 //	ft_clear_env(&env); // Error ft_strdel();
 	mlx_loop(env.mlx);

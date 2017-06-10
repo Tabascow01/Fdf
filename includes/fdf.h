@@ -113,6 +113,9 @@ int		ft_format_grid(t_env *env);
 void	ft_clear_env(t_env *env);
 void	ft_clear_parser(t_parse *parser);
 
+void	ft_error_list();
+void	ft_error_usage();
+void	ft_error_parser(t_env *env);
 void	ft_error_mlx_ptr(t_env *env);
 void	ft_error_win_ptr(t_env *env);
 

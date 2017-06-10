@@ -11,14 +11,20 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>//
 
 static	void	ft_store_map(t_parse *parser, t_env *env)
 {
 	env->parser = ft_get_file(parser->fd);
+	if (env->parser[0] == '\0')
+	{
+		ft_error_parser(env);
+		return ;
+	}
 	ft_counter_y(env);
 	ft_counter_x(env); //Error with color
 	parser->altitude = ft_store_altitude(env, parser);
-//	printf("parser: %s\n", env->parser);
+//	printf("parser: {%s}\n", env->parser);
 //	printf("[%s]\n",parser->color[1]);
 }
 
@@ -27,13 +33,15 @@ static	void	ft_open_file(t_parse *parser, char **argv)
 	parser->fd = open(argv[1],O_RDONLY);
 }
 
-int				ft_parser(t_env *lst, char **argv)
+int				ft_parser(t_env *env, char **argv)
 {
 	t_parse *parser;
 
 	parser = ft_init_parser();
 	ft_open_file(parser, argv);
-	ft_store_map(parser, lst);
+	ft_store_map(parser, env);
+	if (env->error > 2)
+		return (env->error);
 //	ft_clear_parser(parser); // Error ft_strdel();
 	return (0);
 }
