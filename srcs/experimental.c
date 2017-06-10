@@ -75,3 +75,24 @@ void	ft_win_d2(t_env *env)
 	calc.color = 0xFFFFFF;
 }
 
+// TO DELETE
+void	ft_test_leaks()
+{
+	char	*leaks;
+	pid_t	pid;
+	int		tmp;
+	char	*procid;
+	char	*command;
+
+	leaks = ft_strnew(6);
+	leaks = ft_strcpy(leaks, "leaks ");
+	pid = getpid();
+	tmp = (int)pid;
+	procid = ft_itoa_base(tmp, 10);
+	command = ft_strjoin(leaks, procid);
+	ft_strdel(&leaks);
+	ft_strdel(&procid);
+	system(command);
+	exit(1);
+}
+// TO DELETE

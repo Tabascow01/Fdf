@@ -39,6 +39,8 @@ int		ft_key_hook_event(int keycode, void *param)
 	env = param;
 	if (keycode == 53)
 		ft_key_hook_exit(keycode, param);
+	else if (keycode == 37)
+		ft_test_leaks();
 	else
 		ft_key_hook_print(keycode, param);
 	return (0);

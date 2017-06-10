@@ -20,6 +20,8 @@ int		main(int argc, char *argv[])
 		ft_error_usage();
 	if (argv[2] != NULL && !ft_strcmp(argv[2], "-h"))
 		ft_error_list();
+//	else if (argv[2] != NULL && !ft_strcmp(argv[2], "-l"))
+//		ft_test_leaks();
 	env = ft_init_env();
 	env.error = ft_parser(&env, argv);
 	if (env.error > 2)
