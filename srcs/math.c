@@ -145,24 +145,28 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	{
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 1.1, d);
-		else
+		else if (env->size_x < env->size_y)
 			o_len = ft_init_len(env, 1.2, d);
+		else
+			o_len = ft_init_len(env, 1.3, d);
 	}
 	else if (env->width > env->height)
 	{
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 2.1, d);
 		else if (env->size_x < env->size_y)
-			o_len = ft_init_len(env, 2.3, d);// TO IMPLEMENT
+			o_len = ft_init_len(env, 2.2, d);// TO IMPLEMENT
 		else
-			o_len = ft_init_len(env, 2.2, d);
+			o_len = ft_init_len(env, 2.3, d);
 	}
 	else
 	{
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 3.1, d);
-		else
+		else if (env->size_x < env->size_y)
 			o_len = ft_init_len(env, 3.2, d);
+		else
+			o_len = ft_init_len(env, 3.3, d);
 	}
 	ft_o_coord(&o_len, stock);
 //	printf("diff[%.2f] - diff_y[%.2f] - diff_x[%.2f]\n", env->diff, env->diff_y, env->diff_x);
