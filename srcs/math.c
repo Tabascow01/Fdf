@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 00:44:14 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/09 02:27:50 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/12 16:53:54 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,12 +155,14 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 2.1, d);
 		else if (env->size_x < env->size_y)
-			o_len = ft_init_len(env, 2.2, d);// TO IMPLEMENT
+			o_len = ft_init_len(env, 2.2, d);
 		else
 			o_len = ft_init_len(env, 2.3, d);
 	}
 	else
 	{
+		stock->x0 = env->width / 2;
+		stock->y0 = env->height / 2 - ((env->height / 4 * 1.2) * (env->width / env->height));
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 3.1, d);
 		else if (env->size_x < env->size_y)
