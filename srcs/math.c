@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 00:44:14 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/12 16:53:54 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:24:50 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	stock->y0 = env->height / 4;
 	if (ft_window_iscase(env))
 	{
+		stock->x0 = env->width / 2;
+		stock->y0 = env->height / 4;
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 1.1, d);
 		else if (env->size_x < env->size_y)
@@ -152,6 +154,8 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	}
 	else if (env->width > env->height)
 	{
+		stock->x0 = round(env->width / 2);
+		stock->y0 = round(env->height / 2 - (env->height / 4 * (env->height / env->width)));
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 2.1, d);
 		else if (env->size_x < env->size_y)
@@ -161,8 +165,8 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	}
 	else
 	{
-		stock->x0 = env->width / 2;
-		stock->y0 = env->height / 2 - ((env->height / 4 * 1.2) * (env->width / env->height));
+		stock->x0 = round(env->width / 2);
+		stock->y0 = round(env->height / 2 - ((env->height / 4 * 1.2) * (env->width / env->height)));
 		if (env->size_x == env->size_y)
 			o_len = ft_init_len(env, 3.1, d);
 		else if (env->size_x < env->size_y)

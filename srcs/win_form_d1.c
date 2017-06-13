@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 01:14:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/12 17:18:50 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/13 14:53:00 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	ft_win_form2_d1(t_env *env, t_len  *len, double win_form)
 	if (win_form == 2.3)
 	{
 		len->o_x0 = round(env->width / 2 - (env->width / 4 * 1.2) * env->diff_x);
-		len->o_y0 = round(env->height / 4 + (env->height / 4) * env->diff_y);
+		len->o_y0 = round(env->height / 4 + (env->height / 4) * env->diff_y * (env->height / env->width));
 		len->o_x1 = round(env->width / 2 + ((env->width / 4 * 1.2) - (env->width / 4 * 1.2 * env->diff_x)));
-		len->o_y1 = round(env->height / 2 + (env->height / 4) * env->diff_y);
+		len->o_y1 = round(env->height / 2 + (env->height / 4) * env->diff_y * (env->height / env->width));
 	}
 }
 
@@ -75,8 +75,8 @@ void	ft_win_form3_d1(t_env *env, t_len  *len, double win_form)
 	if (win_form == 3.3)
 	{
 		len->o_x0 = round(env->width / 2 - (env->width / 2 * env->diff_x));
-		len->o_y0 = round(env->height / 4 + (env->height / 4) * env->diff_y);
+		len->o_y0 = round((env->height / 4 * 1.2) + (env->height / 4 * 0.8) * env->diff_y / (env->width / env->height));
 		len->o_x1 = round(env->width - (env->width / 2 * env->diff_x));
-		len->o_y1 = round(env->height / 2 + (env->height / 4) * env->diff_y);
+		len->o_y1 = round(env->height / 2 + ((env->height / 4 * 0.8) * env->diff_y * (env->width / env->height)));
 	}
 }

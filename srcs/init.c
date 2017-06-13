@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/12 16:54:15 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:24:54 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_env		ft_init_env(void)
 	env.size_x = 0.0;
 	env.winform = 0;
 	env.error = 0;
-	env.height = 1500;
+	env.height = 1000;
 	env.width = 1000;
 	env.title = "Fdf";
 	env.mlx = mlx_init();
