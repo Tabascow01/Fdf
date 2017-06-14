@@ -6,33 +6,26 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 03:44:45 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/13 15:24:54 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/14 16:49:13 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_len	ft_init_len(t_env *env, double win_form, int d)
+void	ft_init_len(t_env *env, t_stock *stock, double win_form, int d)
 {
-	t_len len;
-
-	len.o_x0 = 0;
-	len.o_x1 = 0;
-	len.o_y0 = 0;
-	len.o_y1 = 0;
 	if (d == 1)
 	{
-		ft_win_form1_d1(env, &len, win_form);
-		ft_win_form2_d1(env, &len, win_form);
-		ft_win_form3_d1(env, &len, win_form);
+		ft_win_form1_d1(env, stock, win_form);
+		ft_win_form2_d1(env, stock, win_form);
+		ft_win_form3_d1(env, stock, win_form);
 	}
 	if (d == 2)
 	{
-		ft_win_form1_d2(env, &len, win_form);
-		ft_win_form2_d2(env, &len, win_form);
-		ft_win_form3_d2(env, &len, win_form);
+		ft_win_form1_d2(env, stock, win_form);
+		ft_win_form2_d2(env, stock, win_form);
+		ft_win_form3_d2(env, stock, win_form);
 	}
-	return (len);
 }
 
 t_stock	ft_init_stock(double x0, double x1, double y0, double y1)
@@ -85,10 +78,10 @@ t_env		ft_init_env(void)
 	env.parser = NULL;
 	env.size_y = 0.0;
 	env.size_x = 0.0;
-	env.winform = 0;
+	env.len_max = 0.0;
 	env.error = 0;
 	env.height = 1000;
-	env.width = 1000;
+	env.width = 1500;
 	env.title = "Fdf";
 	env.mlx = mlx_init();
 	if (env.mlx == NULL)

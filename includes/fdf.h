@@ -6,7 +6,7 @@
 /*   By: mchemakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 05:00:09 by mchemakh          #+#    #+#             */
-/*   Updated: 2017/06/13 14:30:14 by mchemakh         ###   ########.fr       */
+/*   Updated: 2017/06/14 16:37:49 by mchemakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_env
 	double			diff_y;
 	double			diff_x;
 	double			diff;
+	double			len_max;
 }					t_env;
 
 typedef struct		s_parse
@@ -67,31 +68,22 @@ typedef struct		s_calc
 
 typedef struct		s_stock
 {
-	int		x;
 	double	x0;
 	double	x1;
-	int		y;
 	double	y0;
 	double	y1;
 }					t_stock;
 
-typedef struct		s_len
-{
-	double		o_x0;
-	double		o_y0;
-	double		o_x1;
-	double		o_y1;
-}					t_len;
+void	ft_len_max(t_env *env);
+void	ft_scalling_window(t_env *env, t_stock *stock, int d);
 
-void	ft_o_coord(t_len *len, t_stock *stock);
+void	ft_win_form1_d1(t_env *env, t_stock *stock, double win_form);
+void	ft_win_form2_d1(t_env *env, t_stock *stock, double win_form);
+void	ft_win_form3_d1(t_env *env, t_stock *stock, double win_form);
 
-void	ft_win_form1_d1(t_env *env, t_len *len, double win_form);
-void	ft_win_form2_d1(t_env *env, t_len *len, double win_form);
-void	ft_win_form3_d1(t_env *env, t_len *len, double win_form);
-
-void	ft_win_form1_d2(t_env *env, t_len *len, double win_form);
-void	ft_win_form2_d2(t_env *env, t_len *len, double win_form);
-void	ft_win_form3_d2(t_env *env, t_len *len, double win_form);
+void	ft_win_form1_d2(t_env *env, t_stock *stock, double win_form);
+void	ft_win_form2_d2(t_env *env, t_stock *stock, double win_form);
+void	ft_win_form3_d2(t_env *env, t_stock *stock, double win_form);
 
 void	ft_segment_lenght(t_env *env, t_stock *stock, int d);
 
@@ -113,7 +105,7 @@ int		ft_format_grid(t_env *env);
 void	ft_clear_env(t_env *env);
 void	ft_clear_parser(t_parse *parser);
 
-void	ft_test_leaks();//
+void	ft_test_leaks(); // TO REMOVE
 
 void	ft_error_list();
 void	ft_error_usage();
@@ -124,7 +116,7 @@ void	ft_error_win_ptr(t_env *env);
 char	**ft_store_altitude(t_env *env, t_parse *parser);
 char	*ft_store_color(t_env *env, int *i);
 
-t_len	ft_init_len(t_env *env, double win_form, int d);
+void	ft_init_len(t_env *env, t_stock *stock, double win_form, int d);
 t_stock	ft_init_stock(double x0, double x1, double y0, double y1);
 t_calc	ft_init_calcul();
 t_env	ft_init_env();
