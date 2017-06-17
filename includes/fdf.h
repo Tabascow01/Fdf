@@ -72,10 +72,19 @@ typedef struct		s_stock
 	double	x1;
 	double	y0;
 	double	y1;
+	double	old_x0;
+	double	old_y0;
+	double	old_x1;
+	double	old_y1;
 }					t_stock;
 
+void	ft_store_old_coord(t_stock *stock);
+
 void	ft_len_max(t_env *env);
-void	ft_scalling_window(t_env *env, t_stock *stock, int d);
+
+void	ft_scalling_case_window(t_env *env, t_stock *stock, int d);
+void	ft_scalling_rec_inv_window(t_env *env, t_stock *stock, int d);
+void	ft_scalling_rec_window(t_env *env, t_stock *stock, int d);
 
 void	ft_win_form1_d1(t_env *env, t_stock *stock, double win_form);
 void	ft_win_form2_d1(t_env *env, t_stock *stock, double win_form);

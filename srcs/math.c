@@ -15,30 +15,82 @@
 void	ft_len_max(t_env *env)
 {
 	if (env->height == env->width)
-		env->len_max = 1;
+		env->len_max = env->width;
 	else if (env->height > env->width)
 		env->len_max = env->width;
 	else
 		env->len_max = env->height;
 }
 
-void	ft_scalling_window(t_env *env, t_stock *stock, int d)
+void	ft_scalling_case_window(t_env *env, t_stock *stock, int d)
+{
+	ft_len_max(env);
+	if (d == 2)
+	{
+		stock->x0 = round(env->len_max * 0.5);
+		stock->y0 = round((env->len_max * 0.25) + (env->len_max * 0.25 * 0.25));
+		stock->x1 = round(env->len_max / 2 - (env->len_max * 0.25));
+		stock->y1 = round(env->len_max * 0.5);
+	}
+	else if (d == 1)
+	{
+		stock->x0 = round(env->len_max * 0.5);
+		stock->y0 = round((env->len_max * 0.25) + (env->len_max * 0.25 * 0.25));
+		stock->x1 = round(env->len_max / 2 + (env->len_max * 0.25));
+		stock->y1 = round(env->len_max * 0.5);
+	}
+}
+
+void	ft_scalling_rec_inv_window(t_env *env, t_stock *stock, int d)
+{
+	ft_len_max(env);
+	if (d == 2)
+	{
+		stock->x0 = round(env->len_max * 0.5);
+		stock->y0 = round((env->height * 0.25) + (env->height * 0.25 * 0.25));
+		stock->x1 = round(env->len_max / 2 - (env->len_max * 0.5));
+		stock->y1 = round(env->height * 0.5);
+		stock->old_x0 = stock->x0;
+		stock->old_y0 = stock->y0;
+		stock->old_x1 = stock->x1;
+		stock->old_y1 = stock->y1;
+	}
+	else if (d == 1)
+	{
+		stock->x0 = round(env->len_max * 0.5);
+		stock->y0 = round((env->height * 0.25) + (env->height * 0.25 * 0.25));
+		stock->x1 = round(env->len_max / 2 + (env->len_max * 0.5));
+		stock->y1 = round(env->height * 0.5);
+		stock->old_x0 = stock->x0;
+		stock->old_y0 = stock->y0;
+		stock->old_x1 = stock->x1;
+		stock->old_y1 = stock->y1;
+	}
+}
+
+void	ft_scalling_rec_window(t_env *env, t_stock *stock, int d)
 {
 	ft_len_max(env);
 	if (d == 2)
 	{
 		stock->x0 = round(env->width * 0.5);
-		stock->y0 = round((env->len_max * 0.25));
-		stock->x1 = round(env->width / 2 - (env->len_max * 0.5));
+		stock->y0 = round(env->len_max * 0.5 - (env->len_max * 0.25));
+		stock->x1 = round(env->width * 0.5 - (env->len_max * 0.5));
 		stock->y1 = round(env->len_max * 0.5);
-	}
+		stock->old_x0 = stock->x0;
+		stock->old_y0 = stock->y0;
+		stock->old_x1 = stock->x1;
+		stock->old_y1 = stock->y1;}
 	else if (d == 1)
 	{
 		stock->x0 = round(env->width * 0.5);
-		stock->y0 = round(env->len_max * 0.25);
-		stock->x1 = round(env->width / 2 + (env->len_max * 0.5));
+		stock->y0 = round(env->len_max * 0.5 - (env->len_max * 0.25));
+		stock->x1 = round(env->width * 0.5 + (env->len_max * 0.5));
 		stock->y1 = round(env->len_max * 0.5);
-	}
+		stock->old_x0 = stock->x0;
+		stock->old_y0 = stock->y0;
+		stock->old_x1 = stock->x1;
+		stock->old_y1 = stock->y1;}
 }
 
 double	ft_calc_percent(t_env *env)
@@ -156,12 +208,9 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 		env->diff_y = 1;
 	}
 	ft_calc_percent(env);
-	ft_scalling_window(env, stock, d);
-	printf("len_max[%.2f]\n", env->len_max);
 	if (ft_window_iscase(env))
 	{
-		stock->x0 = env->width / 2;
-		stock->y0 = env->height / 4;
+		ft_scalling_rec_inv_window(env, stock, d);
 		if (env->size_x == env->size_y)
 			ft_init_len(env, stock, 1.1, d);
 		else if (env->size_x < env->size_y)
@@ -171,8 +220,7 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	}
 	else if (env->width > env->height)
 	{
-//		stock->x0 = round(env->width / 2);
-//		stock->y0 = round(env->height / 2 - (env->height / 4));
+		ft_scalling_rec_window(env, stock, d);
 		if (env->size_x == env->size_y)
 			ft_init_len(env, stock, 2.1, d);
 		else if (env->size_x < env->size_y)
@@ -182,8 +230,7 @@ static void		ft_calc_length(t_env *env, t_stock *stock, int d)
 	}
 	else
 	{
-		stock->x0 = round(env->width / 2);
-		stock->y0 = round(env->height / 2 - (env->height / 4));
+		ft_scalling_rec_inv_window(env, stock, d);
 		if (env->size_x == env->size_y)
 			ft_init_len(env, stock, 3.1, d);
 		else if (env->size_x < env->size_y)
