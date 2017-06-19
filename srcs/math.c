@@ -12,19 +12,31 @@
 
 #include "fdf.h"
 
-void	ft_len_max(t_env *env)
+void	ft_len_max(t_env *env, t_stock *stock)
 {
 	if (env->height == env->width)
+	{
+		stock->ori_x = env->width / 2;
+		stock->ori_y = stock->ori_x;
 		env->len_max = env->width;
+	}
 	else if (env->height > env->width)
+	{
+		stock->ori_x = env->width / 2;
+		stock->ori_y = env->height / 2;
 		env->len_max = env->width;
+	}
 	else
+	{
+		stock->ori_x = env->width / 2;
+		stock->ori_y = env->height / 2;
 		env->len_max = env->height;
+	}
 }
 
 void	ft_scalling_case_window(t_env *env, t_stock *stock, int d)
 {
-	ft_len_max(env);
+	ft_len_max(env, stock);
 	if (d == 2)
 	{
 		stock->x0 = round(env->len_max * 0.5);
@@ -43,7 +55,7 @@ void	ft_scalling_case_window(t_env *env, t_stock *stock, int d)
 
 void	ft_scalling_rec_inv_window(t_env *env, t_stock *stock, int d)
 {
-	ft_len_max(env);
+	ft_len_max(env, stock);
 	if (d == 2)
 	{
 		stock->x0 = round(env->len_max * 0.5);
@@ -70,7 +82,7 @@ void	ft_scalling_rec_inv_window(t_env *env, t_stock *stock, int d)
 
 void	ft_scalling_rec_window(t_env *env, t_stock *stock, int d)
 {
-	ft_len_max(env);
+	ft_len_max(env, stock);
 	if (d == 2)
 	{
 		stock->x0 = round(env->width * 0.5);

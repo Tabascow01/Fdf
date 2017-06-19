@@ -68,10 +68,14 @@ typedef struct		s_calc
 
 typedef struct		s_stock
 {
+	double	ori_x;
+	double	ori_y;
+
 	double	x0;
 	double	x1;
 	double	y0;
 	double	y1;
+
 	double	old_x0;
 	double	old_y0;
 	double	old_x1;
@@ -80,7 +84,7 @@ typedef struct		s_stock
 
 void	ft_store_old_coord(t_stock *stock);
 
-void	ft_len_max(t_env *env);
+void	ft_len_max(t_env *env, t_stock *stock);
 
 void	ft_scalling_case_window(t_env *env, t_stock *stock, int d);
 void	ft_scalling_rec_inv_window(t_env *env, t_stock *stock, int d);
