@@ -48,22 +48,23 @@ void	ft_win_form2_d2(t_env *env, t_stock *stock, double win_form)
 //		stock->y0 = round();
 //		stock->x1 = round();
 //		stock->y1 = round();
-		stock->old_x0 = stock->x0;
-		stock->old_y0 = stock->y0;
-		stock->old_x1 = stock->x1;
-		stock->old_y1 = stock->y1;
-	}
-	if (win_form == 2.3)
-	{
-		stock->x0 = round(stock->ori_x - ((stock->ori_x - stock->old_x1) * env->diff_x));
-		stock->y0 = round(stock->ori_y - ((stock->ori_y - stock->old_y0) * env->diff_y));
-		stock->x1 = round(stock->ori_x - ((stock->ori_x - stock->old_x1) * (1 - env->diff_x)));
-		stock->y1 = round(stock->ori_y - ((stock->ori_y - stock->old_y1) * (1 - env->diff_y)));
 //		stock->old_x0 = stock->x0;
 //		stock->old_y0 = stock->y0;
 //		stock->old_x1 = stock->x1;
 //		stock->old_y1 = stock->y1;
 	}
+	if (win_form == 2.3)
+	{
+//		stock->x0 = round(stock->ori_x - ((stock->ori_x - stock->old_x1) * env->diff_x));
+//		stock->y0 = round(stock->ori_y - ((stock->ori_y - stock->old_y0) * env->diff_y));
+//		stock->x1 = round(stock->ori_x - ((stock->ori_x - stock->old_x1) * (1 - env->diff_x)));
+//		stock->y1 = round(stock->ori_y - ((stock->ori_y - stock->old_y1) * (1 - env->diff_y)));
+//		stock->old_x0 = stock->x0;
+//		stock->old_y0 = stock->y0;
+//		stock->old_x1 = stock->x1;
+//		stock->old_y1 = stock->y1;
+	}
+	stock->ori_x = 0;
 	env->error = 0;
 }
 
